@@ -238,7 +238,7 @@
                             <span class="nav-text">School</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="view-fac.php">FAC et Departement</a></li>
+                            <li><a href="fac-dep.php">FAC et Departement</a></li>
                             <li><a href="add-courses.html">Add Courses</a></li>
                             <li><a href="edit-courses.html">Edit Courses</a></li>
                             <li><a href="about-courses.html">About Courses</a></li>

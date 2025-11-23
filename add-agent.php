@@ -13,8 +13,8 @@
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php"><strong>Home</strong></a></li>
-                            <li class="breadcrumb-item active"><a href="add-professor.html">Agent</li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Ajouter Agent</li>
+                            <li class="breadcrumb-item active"><a href="list-agents.php">Agent</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Ajouter Agent</a></li>
                         </ol>
                     </div>
                 </div>

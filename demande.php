@@ -25,7 +25,7 @@
                     <div class="col-xl-12 col-xxl-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Completer la fiche de mobilité</h5>
+                                <h5 class="card-title"><strong>Completer la fiche de mobilité</strong></h5>
                             </div>
                             <div class="card-body">
                                 <form action="#" method="post">
@@ -78,51 +78,6 @@
                                             <div class="form-group">
                                                 <label class="form-label">Financement de la mobilité couvert par</label>
                                                 <input type="text" name="financement_mobilite" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Genre</label>
-                                                <select class="form-control">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Adresse</label>
-                                                <input type="text" name="adresse" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Numero Téléphone</label>
-                                                <input type="text" name="telephone" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Department</label>
-                                                <select class="form-control">
-                                                    <option value="Department">Department</option>
-                                                    <option value="html">HTML</option>
-                                                    <option value="css">CSS</option>
-                                                    <option value="javascript">JavaScript</option>
-                                                    <option value="angular">Angular</option>
-                                                    <option value="angular">React</option>
-                                                    <option value="vuejs">Vue.js</option>
-                                                    <option value="ruby">Ruby</option>
-                                                    <option value="php">PHP</option>
-                                                    <option value="asp">ASP.NET</option>
-                                                    <option value="python">Python</option>
-                                                    <option value="mysql">MySQL</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <div class="form-group fallback w-100">
-                                                <input type="file" name="photo" class="dropify" data-default-file="">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
