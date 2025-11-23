@@ -39,6 +39,17 @@
     <script src="assets/vendor/svganimation/svg.animation.js"></script>
     <script src="assets/js/styleSwitcher.js"></script>
 
+        <!-- Toastr -->
+    <script src="assets/vendor/toastr/js/toastr.min.js"></script>
+
+    <!-- All init script -->
+    <script src="assets/js/plugins-init/toastr-init.js"></script>
+    <script>
+        <?php if (!empty($toast)): ?>
+            toastr.<?php echo $toast['type']; ?>("<?php echo addslashes($toast['message']); ?>");
+        <?php endif; ?>
+    </script>
+
     <!-- pickdate -->
     <script src="assets/vendor/pickadate/picker.js"></script>
     <script src="assets/vendor/pickadate/picker.time.js"></script>

@@ -1,3 +1,15 @@
+<?php
+session_start();
+include('conf/dbcon.php');
+
+$toast = null;
+if (isset($_SESSION['toastr'])) {
+    $toast = $_SESSION['toastr'];
+    unset($_SESSION['toastr']); // pour ne l’afficher qu’une fois
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +23,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <link rel="stylesheet" href="assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+     <link rel="stylesheet" href="assets/vendor/toastr/css/toastr.min.css">
 
     <!-- Pick date -->
     <link rel="stylesheet" href="assets/vendor/pickadate/themes/default.css">

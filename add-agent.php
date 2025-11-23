@@ -27,7 +27,7 @@
                                 <a href="list-agents.php" class="btn btn-primary">Liste agent</a>
                             </div>
                             <div class="card-body">
-                                <form action="#" method="post">
+                                <form action="function.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">

@@ -45,23 +45,22 @@
                                                 data-dismiss="modal"><span>&times;</span>
                                             </button>
                                         </div>
-                                        <form action="" method="POST">
+                                        <form action="function.php" method="POST">
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="control-label">Nom</label>
-                                                        <input class="form-control form-white" placeholder="Entrez nom"
-                                                            type="text" name="name">
+                                                        <input class="form-control form-white" placeholder="Entrez nom" type="text" name="name" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Designation</label>
                                                         <input class="form-control form-white" placeholder="Entrez designation"
-                                                            type="text" name="designation">
+                                                            type="text" name="designation" required>
                                                     </div>            
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                                <button type="submit" name="add_faculte" class="btn btn-primary">Enregistrer les modifications</button>
                                             </div>
                                         </form>
                                     </div>
