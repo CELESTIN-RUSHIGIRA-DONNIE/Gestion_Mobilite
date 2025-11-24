@@ -5,10 +5,9 @@ include("conf/dbcon.php");
 
 if (isset($_POST["add_agents"])) {
 
-    // $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
-    $user_id = 1;
-
-     // Générer un code_agent unique
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+    
+    // Générer un code_agent unique
     do {
         $code_agent = 'AG' . date('YmdHis') . rand(10,99);
         $check_code_query = "SELECT code_agent FROM agents WHERE code_agent = '$code_agent'";
@@ -42,10 +41,58 @@ if (isset($_POST["add_agents"])) {
     }
 }
 
+else if (isset($_POST["add_profile"])) {
+
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $nom = mysqli_real_escape_string($con, $_POST['nom']);
+    $postnom = mysqli_real_escape_string($con, $_POST['postnom']);
+    $prenom = mysqli_real_escape_string($con, $_POST['prenom']);
+    $grade = mysqli_real_escape_string($con, $_POST['grade']);
+    $date_nais = mysqli_real_escape_string($con, $_POST['date_nais']);
+    $genre = mysqli_real_escape_string($con, $_POST['genre']);
+    $adress = mysqli_real_escape_string($con, $_POST['adresse']);
+    $telephone = mysqli_real_escape_string($con, $_POST['telephone']);
+    $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+
+    // Vérification de l'image
+    $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
+    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
+    if (!in_array($file_extension, $allowed_extensions)) {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Format d\'image non valide.'];
+        header("Location: add-profile.php");
+        exit;
+    }
+
+    // Insertion dans la base de données
+    $stmt = $con->prepare("UPDATE agents SET nom = ?, postnom = ?, prenom = ?, Grade = ?, sexe = ?, date_nais = ?, adress = ?, photo = ? WHERE id = ?");
+    $stmt->bind_param("ssssssssi", $nom, $postnom, $prenom, $grade, $genre, $date_nais, $adress, $image, $user_id);
+    if ($stmt->execute()) {
+        move_uploaded_file($image_tmp, "uploads/" . $image);
+
+        //Met à jour les infos dans la session pour affichage immédiat
+        $_SESSION['auth_user']['nom'] = $nom;
+        $_SESSION['auth_user']['postnom'] = $postnom;
+        $_SESSION['auth_user']['prenom'] = $prenom;
+        $_SESSION['auth_user']['email'] = $email;
+        $_SESSION['auth_user']['photo'] = $image; //ici on remplace le photo par defaut a la nouvelle 
+
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Profile mis à jour avec succès.'];
+        header("Location: add-profile.php");
+        exit;
+
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la mise à jour du profil'];
+        header("Location: add-profile.php");
+        exit;
+    }
+} 
+
 else if (isset($_POST["add_departement"])) {
 
-    // $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
-    $user_id =1;
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+    
     $faculte_id = $_POST['id_faculte'];
     $departement = mysqli_real_escape_string($con, $_POST['name']);
 
@@ -81,8 +128,7 @@ else if (isset($_POST["add_departement"])) {
 
 else if (isset($_POST["add_faculte"])) {
 
-    // $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
-    $user_id = 1;
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
     
     $name = mysqli_real_escape_string($con, $_POST['name']);
     $designation = mysqli_real_escape_string($con, $_POST['designation']);
@@ -133,13 +179,13 @@ else if (isset($_POST['register'])) {
         if ($stmt->fetch()) {
             if (!empty($email_db) && !empty($password_db)) {
                 $_SESSION['message'] = "Un compte existe déjà pour ce matricule ou mail.";
-                $_SESSION['message_code'] = "error";
+                $_SESSION['msg_type'] = "danger";
                 header('Location: register.php');
                 exit(0);
             }
         } else {
             $_SESSION['message'] = "Le matricule n'existe pas.";
-            $_SESSION['message_code'] = "error";
+            $_SESSION['msg_type'] = "danger";
             header('Location: register.php');
             exit(0);
         }
@@ -147,24 +193,151 @@ else if (isset($_POST['register'])) {
 
         // Insertion
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $con->prepare("UPDATE agents SET email = ?, password = ? WHERE matricule = ?");
+        $stmt = $con->prepare("UPDATE agents SET email=?, password=? WHERE matricule=?");
         $stmt->bind_param("sss", $email, $passwordHash, $matricule);
         if ($stmt->execute()) {
             $_SESSION['message'] = "Inscription réussie";
-            $_SESSION["message_code"] = "success";
+            $_SESSION["msg_type"] = "success";
             header('Location: login.php');
             exit(0);
         } else {
             $_SESSION['message'] = "Erreur lors de la création du compte";
-            $_SESSION["message_code"] = "error";
+            $_SESSION["msg_type"] = "danger";
             header('Location: register.php');
             exit(0);
         }
     } else {
         $_SESSION['message'] = "Les mots de passe ne correspondent pas";
-        $_SESSION["message_code"] = "error";
+        $_SESSION["msg_type"] = "danger";
         header('Location: register.php');
         exit(0);
     }
 } 
+
+else if (isset($_POST['login'])) {
+
+    $matricule = mysqli_real_escape_string($con, $_POST['matricule']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+    //on va juste vérifier le mot de passe après avoir récupéré le hash
+
+    $login_query = "SELECT * FROM agents WHERE matricule = '$matricule' LIMIT 1";
+    $login_query_run = mysqli_query($con, $login_query);
+
+    if (mysqli_num_rows($login_query_run) > 0) {
+        $userdata = mysqli_fetch_array($login_query_run);
+
+        //Récupère le mot de passe haché depuis la base de données
+        $hashed_password = $userdata['password'];
+
+        //Vérifie si le mot de passe saisi correspond au hash
+        if (password_verify($password, $hashed_password)) {
+
+            $user_id = $userdata['id'];
+            $nom = $userdata['nom'];
+            $postnom = $userdata['postnom'];
+            $prenom = $userdata['prenom'];
+            $email = $userdata['email'];
+            $role = $userdata['role'];
+            $image = $userdata['photo'];
+
+            $_SESSION['auth_user'] = [
+                'id' => $user_id,
+                'nom' => $nom,
+                'postnom' => $postnom,
+                'prenom' => $prenom,
+                'email' => $email,
+                'photo' => $image,
+                'role' => $role
+            ];
+
+            // Vérification du profil
+            // $profil_incomplet = empty($user['nom']) || empty($user['postnom']) || empty($user['prenom']) || empty($user['photo']);
+            // $profil_incomplet = empty($nom) || empty($postnom) || empty($userdata['prenom']) || empty($image);
+
+
+
+            //Redirection selon le rôle
+            if ($role == 'SGR') {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Bienvenue SGR'];
+                header("Location: index.php");
+                exit;
+            }
+
+            else if ($role == 'DOYEN') {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Bienvenue DOYEN'];
+                header("Location: index.php");
+                exit;
+            }
+            else if ($role == 'SGAC') {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Bienvenue SGAC'];
+                header("Location: index.php");
+                exit;
+            }
+            else if ($role == 'RECTORAT') {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Bienvenue RECTORAT'];
+                header("Location: index.php");
+                exit;
+            }
+            else {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Bienvenue'];
+                header("Location: index.php");
+                exit;   
+            }
+
+        } else {
+
+            $_SESSION['message'] = "Mot de passe incorrect";
+            $_SESSION['msg_type'] = "danger";
+            header('Location: login.php');
+            exit;
+        }
+
+    } else {
+        $_SESSION['message'] = "Matricule Introuvable";
+        $_SESSION['msg_type'] = "danger";
+        header("Location: login.php");
+        exit;
+    }
+} 
+
+
+else if (isset($_POST["send_demande"])) {
+
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+    
+    do {
+        $code_bourse = 'BOU' . date('YmdHis') . rand(10,99);
+        $check_code_query = "SELECT code_bourse FROM demande_bourse WHERE code_bourse = '$code_bourse'";
+        $check_code_run = mysqli_query($con, $check_code_query);
+    } while (mysqli_num_rows($check_code_run) > 0);
+    $type_mobilite = mysqli_real_escape_string($con, $_POST['type_mobilite']);
+    $objectif_mobilite = mysqli_real_escape_string($con, $_POST['objectif_mobilite']);
+    $dure_sejour = mysqli_real_escape_string($con, $_POST['dure_sejour']);
+    $organisation_accueil = mysqli_real_escape_string($con, $_POST['organisation_accueil']);
+    $programme_intervention = mysqli_real_escape_string($con, $_POST['programme_intervention']);
+    $date_depart = mysqli_real_escape_string($con, $_POST['date_depart']);
+    $date_retour = mysqli_real_escape_string($con, $_POST['date_retour']);
+    $finance_mobilite = mysqli_real_escape_string($con, $_POST['financement_mobilite']);
+    $soutient_uea = mysqli_real_escape_string($con, $_POST['soutient_uea']);
+    $status = 'en attente';
+
+    
+    $sql_insert = "INSERT INTO demande_bourse (code_bourse,type_mobilite,objectif_mobilite,dure_sejour,organisation_accueil,programme_intervention,date_depart,date_retour,finance_mobilite,soutient_uea,status, id_ut_bour_fk) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    if ($stmt = $con->prepare($sql_insert)) {
+        $stmt->bind_param("ssssssssssss", $code_bourse,$type_mobilite,
+        $objectif_mobilite,$dure_sejour,$organisation_accueil,$programme_intervention,$date_depart,$date_retour,$finance_mobilite,$soutient_uea,$status,$user_id);
+        if ($stmt->execute()) {
+            $_SESSION['toastr'] = ['type' => 'success','message' => 'Demande envoyée avec succès'];
+            $stmt->close();
+            header("Location: demande.php");
+            exit;
+        } else {
+            $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de l\'envoi de la demande.'];
+            header("Location: demande.php");
+            exit;
+        }
+    }
+}
 ?>

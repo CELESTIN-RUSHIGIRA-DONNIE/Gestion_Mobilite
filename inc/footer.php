@@ -39,7 +39,7 @@
     <script src="assets/vendor/svganimation/svg.animation.js"></script>
     <script src="assets/js/styleSwitcher.js"></script>
 
-        <!-- Toastr -->
+    <!-- Toastr -->
     <script src="assets/vendor/toastr/js/toastr.min.js"></script>
 
     <!-- All init script -->

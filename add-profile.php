@@ -28,7 +28,7 @@
                                 <h5 class="card-title">Informations</h5>
                             </div>
                             <div class="card-body">
-                                <form action="#" method="post">
+                                <form action="function.php" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -50,15 +50,21 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
+                                                <label class="form-label">Grade</label>
+                                                <input type="text" name="grade" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
                                                 <label class="form-label">Date de Naissance</label>
-                                                <input name="datepicker" class="datepicker-default form-control"
+                                                <input name="date_nais" class="datepicker-default form-control"
                                                     id="datepicker">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Genre</label>
-                                                <select class="form-control">
+                                                <select name="genre" class="form-control">
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                 </select>
@@ -76,33 +82,13 @@
                                                 <input type="text" name="telephone" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Department</label>
-                                                <select class="form-control">
-                                                    <option value="Department">Department</option>
-                                                    <option value="html">HTML</option>
-                                                    <option value="css">CSS</option>
-                                                    <option value="javascript">JavaScript</option>
-                                                    <option value="angular">Angular</option>
-                                                    <option value="angular">React</option>
-                                                    <option value="vuejs">Vue.js</option>
-                                                    <option value="ruby">Ruby</option>
-                                                    <option value="php">PHP</option>
-                                                    <option value="asp">ASP.NET</option>
-                                                    <option value="python">Python</option>
-                                                    <option value="mysql">MySQL</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <div class="form-group fallback w-100">
-                                                <input type="file" name="photo" class="dropify" data-default-file="">
+                                                <input type="file" name="image" class="dropify" data-default-file="">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <button type="submit" class="btn btn-light">Cencel</button>
+                                            <button type="submit" name="add_profile" class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conf/dbcon.php");
+?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -20,12 +24,10 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    
-                                    <?php if (isset($_SESSION['message'])) {  ?>
-                                        <div
-                                            class="col-xl-12 alert alert-<?php echo $_SESSION['message_code']; ?> solid alert-dismissible fade show">
-                                            <button type="button" class="close h-100" data-dismiss="alert"
-                                                aria-label="Close">
+
+                                    <?php if (isset($_SESSION['message'])) { ?>
+                                        <div class="col-xl-12 alert alert-<?php echo $_SESSION['msg_type']; ?> solid alert-dismissible fade show">
+                                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
                                                 <span><i class="mdi mdi-close"></i></span>
                                             </button>
                                             <strong>
@@ -33,9 +35,8 @@
                                             </strong>
                                             <?php echo $_SESSION['message']; ?>
                                         </div>
-                                        <?php unset($_SESSION['message'], $_SESSION['message_code']); ?>
+                                        <?php unset($_SESSION['message'], $_SESSION['msg_type']); ?>
                                     <?php } ?>
-
                                     <h4 class="text-center mb-4"><strong>Sign Up</strong></h4>
                                     <form action="function.php" method="post">
                                         <div class="form-group">
@@ -59,8 +60,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Already exist ? <a class="text-primary" href="login.php">connectez-vous</a>
-                                        </p>
+                                        <p>Already exist ? <a class="text-primary" href="login.php">connectez-vous</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="assets/vendor/global/global.min.js"></script>
-    <script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="assets/js/custom.min.js"></script>
     <script src="assets/js/dlabnav-init.js"></script>
 

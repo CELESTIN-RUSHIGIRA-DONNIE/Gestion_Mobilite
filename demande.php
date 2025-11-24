@@ -28,7 +28,7 @@
                                 <h5 class="card-title"><strong>Completer la fiche de mobilité</strong></h5>
                             </div>
                             <div class="card-body">
-                                <form action="#" method="post">
+                                <form action="function.php" method="post">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
@@ -80,8 +80,14 @@
                                                 <input type="text" name="financement_mobilite" class="form-control">
                                             </div>
                                         </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Soutient de l'UEA</label>
+                                                <input type="text" name="soutient_uea" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" name="send_demande" class="btn btn-primary">Submit</button>
                                             <button type="submit" class="btn btn-light">Cencel</button>
                                         </div>
                                     </div>
