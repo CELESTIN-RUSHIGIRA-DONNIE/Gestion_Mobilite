@@ -50,17 +50,19 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label class="control-label">Nom</label>
-                                                        <input class="form-control form-white" placeholder="Entrez nom" type="text" name="name" required>
+                                                        <input class="form-control form-white" placeholder="Entrez nom"
+                                                            type="text" name="name" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Designation</label>
-                                                        <input class="form-control form-white" placeholder="Entrez designation"
-                                                            type="text" name="designation" required>
-                                                    </div>            
+                                                        <input class="form-control form-white" placeholder="Entrez designation" type="text"
+                                                            name="designation" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" name="add_faculte" class="btn btn-primary">Enregistrer les modifications</button>
+                                                <button type="submit" name="add_faculte"
+                                                    class="btn btn-primary">Enregistrer les modifications</button>
                                             </div>
                                         </form>
                                     </div>
@@ -71,26 +73,45 @@
                                     <table class="table verticle-middle table-responsive-md text-center">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No.</th>
+                                                <th scope="col">ID</th>
                                                 <th scope="col">Nom</th>
                                                 <th scope="col">Designation</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>Jack Ronan</td>
-                                                <td><span>Checkin</span></td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-success"><i
-                                                            class="la la-eye"></i></a>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $affiche_fac = "SELECT * FROM faculte";
+                                            $fac_run = mysqli_query($con, $affiche_fac);
+
+                                            if (mysqli_num_rows($fac_run) > 0) {
+                                                foreach ($fac_run as $list) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $list['id']; ?></td>
+                                                        <td><?= $list['nom']; ?></td>
+                                                        <td><span><?= $list['designation']; ?></span></td>
+                                                        <td>
+                                                            <a href="edit-student.html" class="btn btn-sm btn-success"><i
+                                                                    class="la la-eye"></i></a>
+                                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
+                                                                    class="la la-pencil"></i></a>
+                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
+                                                                    class="la la-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="4" class="bg-danger text-white text-center">Pas des
+                                                        facultés Enregistrer</td>
+                                                </tr>
+
+                                                <?php
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -104,36 +125,56 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#basicModal2">+ Ajouter Departement</button>
                             </div>
-                                <div class="modal fade" id="basicModal2">
+                            <div class="modal fade" id="basicModal2">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-center"><strong>Ajouter Departement</strong></h5>
+                                            <h5 class="modal-title text-center"><strong>Ajouter Departement</strong>
+                                            </h5>
                                             <button type="button" class="close"
                                                 data-dismiss="modal"><span>&times;</span>
                                             </button>
                                         </div>
-                                        <form action="" method="POST">
+                                        <form action="functions.php" method="POST">
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label class="control-label">Nom</label>
+                                                        <label class="control-label">Nom Departement</label>
                                                         <input class="form-control form-white" placeholder="Entrez nom"
-                                                            type="text" name="category-name">
+                                                            type="text" name="name" required>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Faculté ID</label>
-                                                        <select class="form-control form-white"
-                                                            data-placeholder="Choisissez une couleur..." name="category-color">
-                                                            <option value="success">Success</option>
-                                                            <option value="primary">Primary</option>
-                                                            <option value="warning">Warning</option>
-                                                        </select>
+                                                        <?php
+                                                        $faculte = "SELECT * FROM faculte";
+                                                        $faculte_run = mysqli_query($con, $faculte);
+
+                                                        if (mysqli_num_rows($faculte_run) > 0) {
+                                                            ?>
+                                                            <select class="form-control form-white"
+                                                                data-placeholder="Choisis le faculté..." name="id_faculte">
+                                                                <?php
+                                                                foreach ($faculte_run as $list_faculte) {
+                                                                    ?>
+                                                                    <option value="<?= $list_faculte['id']; ?>">
+                                                                        <?= $list_faculte['nom']; ?></option>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <h5 class="text-danger">Pas de faculte enregistrer</h5>
+                                                            <?php
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                                <button type="submit" name="add_departement"
+                                                    class="btn btn-primary">Enregistrer le Departement</button>
                                             </div>
                                         </form>
                                     </div>
@@ -144,23 +185,45 @@
                                     <table class="table verticle-middle table-responsive-md text-center">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No.</th>
-                                                <th scope="col">Nom</th>
+                                                <th scope="col">ID</th>
                                                 <th scope="col">Faculté ID</th>
+                                                <th scope="col">Departement</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>Jack Ronan</td>
-                                                <td>120$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-success"><i class="la la-eye"></i></a>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $affiche_departement = "SELECT departement.*, faculte.* FROM departement
+                                            INNER JOIN faculte ON departement.id_faculte = faculte.id";
+                                            $affiche_departement_run = mysqli_query($con, $affiche_departement);
+
+                                            if (mysqli_num_rows($affiche_departement_run) > 0) {
+                                                foreach ($affiche_departement_run as $list) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $list['id']; ?></td>
+                                                        <td><?= $list['id_faculte']; ?></td>
+                                                        <td><?= $list['nom']; ?></td>
+                                                        <td>
+                                                            <a href="edit-student.html" class="btn btn-sm btn-success"><i
+                                                                    class="la la-eye"></i></a>
+                                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
+                                                                    class="la la-pencil"></i></a>
+                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
+                                                                    class="la la-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="4" class="bg-danger text-white">Pas de departement
+                                                        enregistré</td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

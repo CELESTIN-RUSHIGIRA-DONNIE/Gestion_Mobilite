@@ -3,7 +3,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $database = "projectb";
+    $database = "gestion_mobilite";
 
     $con = mysqli_connect("$host", "$username", "$password","$database");
     if(!$con)

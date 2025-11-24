@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" name="add_agents" class="btn btn-primary">Enregistrer</button>
                                             <button type="submit" class="btn btn-light">Cencel</button>
                                         </div>
                                     </div>
