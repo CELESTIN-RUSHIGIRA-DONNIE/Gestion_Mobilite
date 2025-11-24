@@ -89,7 +89,7 @@
                                                     ?>
                                                     <tr>
                                                         <td><?= $list['id']; ?></td>
-                                                        <td><?= $list['nom']; ?></td>
+                                                        <td><?= $list['name']; ?></td>
                                                         <td><span><?= $list['designation']; ?></span></td>
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
@@ -135,7 +135,7 @@
                                                 data-dismiss="modal"><span>&times;</span>
                                             </button>
                                         </div>
-                                        <form action="functions.php" method="POST">
+                                        <form action="function.php" method="POST">
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -165,7 +165,9 @@
                                                             <?php
                                                         } else {
                                                             ?>
-                                                            <h5 class="text-danger">Pas de faculte enregistrer</h5>
+                                                                <select class="form-control form-white">
+                                                                    <option value="" class="text-danger">Aucune faculté disponible</option>
+                                                                </select>
                                                             <?php
                                                         }
                                                         ?>
@@ -173,8 +175,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" name="add_departement"
-                                                    class="btn btn-primary">Enregistrer le Departement</button>
+                                                <button type="submit" name="add_departement" class="btn btn-primary">Enregistrer le Departement</button>
                                             </div>
                                         </form>
                                     </div>
@@ -202,7 +203,7 @@
                                                     ?>
                                                     <tr>
                                                         <td><?= $list['id']; ?></td>
-                                                        <td><?= $list['id_faculte']; ?></td>
+                                                        <td><?= $list['name']; ?></td>
                                                         <td><?= $list['nom']; ?></td>
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i

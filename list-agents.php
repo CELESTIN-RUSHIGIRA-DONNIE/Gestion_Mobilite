@@ -42,91 +42,45 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Assigned Professor</th>
-                                                <th scope="col">Date Of Admit</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Subject</th>
-                                                <th scope="col">Fees</th>
-                                                <th scope="col">Edit</th>
+                                                <th scope="col">Matricule</th>
+                                                <th scope="col">Noms</th>
+                                                 <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>Jack Ronan</td>
-                                                <td>Airi Satou</td>
-                                                <td>01 August 2020</td>
-                                                <td><span class="badge badge-rounded badge-primary">Checkin</span></td>
-                                                <td>Commerce</td>
-                                                <td>120$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>02 </td>
-                                                <td>Jimmy Morris</td>
-                                                <td>Angelica Ramos</td>
-                                                <td>31 July 2020</td>
-                                                <td><span class="badge badge-rounded badge-warning">Panding</span></td>
-                                                <td>Mechanical</td>
-                                                <td>120$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>03 </td>
-                                                <td>Nashid Martines</td>
-                                                <td>Ashton Cox</td>
-                                                <td>30 July 2020</td>
-                                                <td><span class="badge badge-rounded badge-danger">Canceled</span></td>
-                                                <td>Science</td>
-                                                <td>520$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>04</td>
-                                                <td>Roman Aurora</td>
-                                                <td>Cara Stevens</td>
-                                                <td>29 July 2020</td>
-                                                <td><span class="badge badge-rounded badge-success">Checkin</span></td>
-                                                <td>Arts</td>
-                                                <td>220$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>05</td>
-                                                <td>Samantha</td>
-                                                <td>Bruno Nash </td>
-                                                <td>28 July 2020</td>
-                                                <td><span class="badge badge-rounded badge-success">Checkin</span></td>
-                                                <td>Maths</td>
-                                                <td>130$</td>
-                                                <td>
-                                                    <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                            class="la la-pencil"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                            class="la la-trash-o"></i></a>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $affiche_agents = "SELECT * FROM agents";
+                                            $agents_run = mysqli_query($con, $affiche_agents);
+
+                                            if (mysqli_num_rows($agents_run) > 0) {
+                                                foreach ($agents_run as $list) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $list['id'] ?></td>
+                                                        <td><?= $list['matricule'] ?></td>
+                                                        <td><?= $list['nom'] ?></td>
+                                                        <td><?= $list['email'] ?></td>
+                                                        <td><?= $list['role'] ?></td>
+                                                        <td>
+                                                            <a href="edit-agent.php?id=<?= $list['id'] ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?>
+                                                <tr>
+                                                    <td colspan="4" class="bg-danger text-white text-center">Pas des
+                                                        facultés Enregistrer</td>
+                                                </tr>
+
+                                                <?php
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

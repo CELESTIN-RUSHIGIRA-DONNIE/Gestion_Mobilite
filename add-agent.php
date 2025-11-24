@@ -32,38 +32,75 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Matricule</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="matricule" class="form-control" placeholder="Entrez le Matricule" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Faculte</label>
-                                                <select class="form-control">
-                                                    <option value="Gender">Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
+                                                 <?php
+                                                        $faculte = "SELECT * FROM faculte";
+                                                        $faculte_run = mysqli_query($con, $faculte);
+
+                                                        if (mysqli_num_rows($faculte_run) > 0) {
+                                                            ?>
+                                                            <select class="form-control form-white" data-placeholder="Entrez la faculté" name="faculte">
+                                                                <?php
+                                                                foreach ($faculte_run as $list_faculte) {
+                                                                    ?>
+                                                                    <option value="<?= $list_faculte['id']; ?>"><?= $list_faculte['name']; ?></option>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <select class="form-control form-white">
+                                                                    <option value="" class="text-danger">Aucune faculté disponible</option>
+                                                                </select>
+                                                            <?php
+                                                        }
+                                                    ?>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Department</label>
-                                                <select class="form-control">
-                                                    <option value="Department">Department</option>
-                                                    <option value="html">HTML</option>
-                                                    <option value="css">CSS</option>
-                                                    <option value="javascript">JavaScript</option>
-                                                </select>
+                                                <?php
+                                                        $departement = "SELECT * FROM departement";
+                                                        $departement_run = mysqli_query($con, $departement);
+
+                                                        if (mysqli_num_rows($departement_run) > 0) {
+                                                            ?>
+                                                            <select class="form-control form-white" data-placeholder="Entrez le département" name="departement">
+                                                                <?php
+                                                                foreach ($departement_run as $list_departement) {
+                                                                    ?>
+                                                                    <option value="<?= $list_departement['id']; ?>"><?= $list_departement['nom']; ?></option>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                                <select class="form-control form-white">
+                                                                    <option value="" class="text-danger">Aucun département disponible</option>
+                                                                </select>
+                                                            <?php
+                                                        }
+                                                    ?>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Role</label>
-                                                <select class="form-control">
-                                                    <option value="Department">SGR</option>
-                                                    <option value="html">DOYEN</option>
-                                                    <option value="css">SGAC</option>
-                                                    <option value="javascript">RECTORAT</option>
+                                                <select class="form-control" name="role">
+                                                    <option>SGR</option>
+                                                    <option>DOYEN</option>
+                                                    <option>SGAC</option>
+                                                    <option>RECTORAT</option>
                                                 </select>
                                             </div>
                                         </div>

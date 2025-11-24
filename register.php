@@ -20,30 +20,47 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Sign Up</h4>
-                                    <form action="conf/code.php">
+                                    
+                                    <?php if (isset($_SESSION['message'])) {  ?>
+                                        <div
+                                            class="col-xl-12 alert alert-<?php echo $_SESSION['message_code']; ?> solid alert-dismissible fade show">
+                                            <button type="button" class="close h-100" data-dismiss="alert"
+                                                aria-label="Close">
+                                                <span><i class="mdi mdi-close"></i></span>
+                                            </button>
+                                            <strong>
+                                                <i class="mdi mdi-alert-circle"></i>
+                                            </strong>
+                                            <?php echo $_SESSION['message']; ?>
+                                        </div>
+                                        <?php unset($_SESSION['message'], $_SESSION['message_code']); ?>
+                                    <?php } ?>
+
+                                    <h4 class="text-center mb-4"><strong>Sign Up</strong></h4>
+                                    <form action="function.php" method="post">
                                         <div class="form-group">
                                             <label><strong>Matricule</strong></label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="matricule">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Email</strong></label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control" name="email">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" name="password">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Repeat Password</strong></label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" name="repeat_password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me in</button>
+                                            <button type="submit" name="register" class="btn btn-primary btn-block">Valider</button>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Already exist ? <a class="text-primary" href="login.php">Sign in</a></p>
+                                        <p>Already exist ? <a class="text-primary" href="login.php">connectez-vous</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +77,7 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="assets/vendor/global/global.min.js"></script>
-	<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="assets/js/custom.min.js"></script>
     <script src="assets/js/dlabnav-init.js"></script>
 
