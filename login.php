@@ -41,7 +41,7 @@ session_start();
                                         <?php unset($_SESSION['message'], $_SESSION['msg_type']); ?>
                                     <?php } ?>
 
-                                    <h4 class="text-center mb-4">Connecter vous</h4>
+                                    <h4 class="text-center mb-4">Connectez-vous</h4>
                                     <form action="function.php" method="POST">
                                         <div class="form-group">
                                             <label><strong>Matricule</strong></label>

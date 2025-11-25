@@ -58,6 +58,10 @@
     <!-- Pickdate -->
     <script src="assets/js/plugins-init/pickadate-init.js"></script>
 
+    <!-- Datatable -->
+    <script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/plugins-init/datatables.init.js"></script>
+
 </body>
 
 </html>

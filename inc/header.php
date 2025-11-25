@@ -32,6 +32,9 @@ if (!isset($_SESSION['auth_user'])) {
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendor/toastr/css/toastr.min.css">
 
+    <!-- Datatable -->
+    <link href="assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- Pick date -->
     <link rel="stylesheet" href="assets/vendor/pickadate/themes/default.css">
     <link rel="stylesheet" href="assets/vendor/pickadate/themes/default.date.css">
