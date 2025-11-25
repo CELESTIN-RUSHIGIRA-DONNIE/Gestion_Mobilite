@@ -45,6 +45,10 @@
                                                 <th>Grade</th>
                                                 <th>Email</th>
                                                 <th>Date demande</th>
+                                                <th>Doyen</th>
+                                                <th>SGR</th>
+                                                <th>SGAC</th>
+                                                <th>RECTORAT</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -67,6 +71,10 @@
                                                 <td><?= $list['Grade'] ?></td>
                                                 <td><a href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a></td>
                                                 <td><?= $list['date_enre_bourse']; ?></td>
+                                                <td class=""><?= $list['ver_doyen'] ?></td>
+                                                <td><?= $list['ver_sgr'] ?></td>
+                                                <td><?= $list['ver_acad'] ?></td>
+                                                <td><?= $list['ver_rect'] ?></td>
                                                 <td>
                                                    <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                 </td>

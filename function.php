@@ -66,8 +66,8 @@ else if (isset($_POST["add_profile"])) {
     }
 
     // Insertion dans la base de données
-    $stmt = $con->prepare("UPDATE agents SET nom = ?, postnom = ?, prenom = ?, Grade = ?, sexe = ?, date_nais = ?, adress = ?, photo = ? WHERE id = ?");
-    $stmt->bind_param("ssssssssi", $nom, $postnom, $prenom, $grade, $genre, $date_nais, $adress, $image, $user_id);
+    $stmt = $con->prepare("UPDATE agents SET nom = ?, postnom = ?, prenom = ?, Grade = ?, sexe = ?, date_nais = ?, adress = ?, telephone = ?, photo = ? WHERE id = ?");
+    $stmt->bind_param("sssssssssi", $nom, $postnom, $prenom, $grade, $genre, $date_nais, $adress, $telephone, $image, $user_id);
     if ($stmt->execute()) {
         move_uploaded_file($image_tmp, "uploads/" . $image);
 
