@@ -96,7 +96,7 @@ else if (isset($_POST["add_departement"])) {
     $faculte_id = $_POST['id_faculte'];
     $departement = mysqli_real_escape_string($con, $_POST['name']);
 
-    $check_departement_query = "SELECT nom FROM departement WHERE nom = '$departement'";
+    $check_departement_query = "SELECT nom_departement FROM departement WHERE nom_departement = '$departement'";
     $check_departement_query_run = mysqli_query($con, $check_departement_query);
     
     if (mysqli_num_rows($check_departement_query_run) > 0) {
@@ -105,7 +105,7 @@ else if (isset($_POST["add_departement"])) {
         exit;
     }
     else {
-        $sql_insert = "INSERT INTO departement (id_faculte,nom,id_user) VALUES (?,?,?)";
+        $sql_insert = "INSERT INTO departement (id_faculte,nom_departement,id_user) VALUES (?,?,?)";
         if ($stmt = $con->prepare($sql_insert)) {
             $stmt->bind_param("isi", $faculte_id,$departement, $user_id);
             if ($stmt->execute()) {
@@ -240,6 +240,7 @@ else if (isset($_POST['login'])) {
             $email = $userdata['email'];
             $role = $userdata['role'];
             $image = $userdata['photo'];
+            $id_faculte = $userdata['id_faculte'];
 
             $_SESSION['auth_user'] = [
                 'id' => $user_id,
@@ -248,7 +249,8 @@ else if (isset($_POST['login'])) {
                 'prenom' => $prenom,
                 'email' => $email,
                 'photo' => $image,
-                'role' => $role
+                'role' => $role,
+                'id_faculte' => $id_faculte
             ];
 
             // Vérification du profil

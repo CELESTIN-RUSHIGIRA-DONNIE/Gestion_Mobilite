@@ -157,7 +157,7 @@
                                                                 foreach ($faculte_run as $list_faculte) {
                                                                     ?>
                                                                     <option value="<?= $list_faculte['id']; ?>">
-                                                                        <?= $list_faculte['nom']; ?></option>
+                                                                        <?= $list_faculte['name']; ?></option>
                                                                     <?php
                                                                 }
                                                                 ?>
@@ -204,7 +204,7 @@
                                                     <tr>
                                                         <td><?= $list['id']; ?></td>
                                                         <td><?= $list['name']; ?></td>
-                                                        <td><?= $list['nom']; ?></td>
+                                                        <td><?= $list['nom_departement']; ?></td>
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
                                                                     class="la la-eye"></i></a>

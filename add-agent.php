@@ -77,7 +77,7 @@
                                                                 <?php
                                                                 foreach ($departement_run as $list_departement) {
                                                                     ?>
-                                                                    <option value="<?= $list_departement['id']; ?>"><?= $list_departement['nom']; ?></option>
+                                                                    <option value="<?= $list_departement['id']; ?>"><?= $list_departement['nom_departement']; ?></option>
                                                                     <?php
                                                                 }
                                                                 ?>

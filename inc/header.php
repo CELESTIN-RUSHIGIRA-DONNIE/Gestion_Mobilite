@@ -15,6 +15,8 @@ if (!isset($_SESSION['auth_user'])) {
     exit(0);
 }
 
+$user_id = $_SESSION['auth_user']['id'];
+$id_faculte = $_SESSION['auth_user']['id_faculte'];
 ?>
 
 <!DOCTYPE html>

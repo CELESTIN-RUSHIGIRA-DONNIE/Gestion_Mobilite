@@ -54,15 +54,14 @@
                                         </thead>
                                         <tbody>
                             <?php
-                            $demande = "SELECT agents.*, demande_Bourse.*
-                            FROM demande_Bourse
+                            $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
                             INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
                             AND demande_bourse.ver_sgr='no_verify'";
                             $demande_run = mysqli_query($con, $demande);
 
                             if (mysqli_num_rows($demande_run) > 0) {
                                 foreach ($demande_run as $list) {
-                            ?>
+                                ?>
                                             <tr>
                                                 <td class="py-1">
                                                     <?php echo'<img class="rounded-circle" width="35" src="uploads/'.$list['photo'].'" alt="User Image">'?>
@@ -71,10 +70,10 @@
                                                 <td><?= $list['Grade'] ?></td>
                                                 <td><a href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a></td>
                                                 <td><?= $list['date_enre_bourse']; ?></td>
-                                                <td class=""><?= $list['ver_doyen'] ?></td>
-                                                <td><?= $list['ver_sgr'] ?></td>
-                                                <td><?= $list['ver_acad'] ?></td>
-                                                <td><?= $list['ver_rect'] ?></td>
+                                                <td class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>"><?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?></td>
+                                                <td class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>"><?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?></td>
+                                                <td class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>"><?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?></td>
+                                                <td class="<?= $list['ver_rect'] == 'no_verify' ? 'text-danger' : 'text-success' ?>"><?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?></td>
                                                 <td>
                                                    <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                 </td>
@@ -88,7 +87,7 @@
                                     <td colspan="7" class="bg-danger text-white text-center">Not record found</td>
                                 </tr>
 
-                            <?php
+                                <?php
                             }
                             ?>
                                         </tbody>

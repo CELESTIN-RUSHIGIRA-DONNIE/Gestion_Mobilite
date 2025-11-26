@@ -62,7 +62,7 @@
                                             </li>
                                         </ul>
                                         <div class="card-footer text-center border-0 mt-0">
-                                            <a href="javascript:void(0);" class="btn btn-primary btn-rounded px-4">Visualiser</a>
+                                            <a href="fiche.php?id=<?= $list['id_ut_bour_fk']; ?>" class="btn btn-primary btn-rounded px-4">Visualiser</a>
                                             <a href="javascript:void(0);" class="btn btn-success btn-rounded px-4">Valider</a>
                                         </div>
                                     </div>
