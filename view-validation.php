@@ -7,14 +7,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Les Demandes</h4>
+                    <h4>Mes Validations</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active"><a href="javascript:void(0);">View</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0);">Voir les demandes</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0);">Voir Mes Validations</a></li>
                 </ol>
             </div>
         </div>
@@ -22,7 +22,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills mb-3">
-                    <li class="nav-item"><a href="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">demandes</a></li>
+                    <li class="nav-item"><a href="view-demande.php"
+                            class="nav-link btn-primary mr-1 show active">demandes non validées</a></li>
                     <li class="nav-item"><a href="view-validation.php" class="nav-link btn-success">Mes validations</a></li>
                 </ul>
             </div>
@@ -31,7 +32,7 @@
                     <div id="list-view" class="tab-pane fade active show col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Demandes non validées</h4>
+                                <h4 class="card-title"><strong>Demande déjà validée</strong></h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -43,8 +44,8 @@
                                                 <th>Grade</th>
                                                 <th>Email</th>
                                                 <th>Date demande</th>
-                                                <th>Doyen</th>
-                                                <th>SGR</th>
+                                                <th>Statut</th>
+                                                <th>Date Validation</th>
                                                 <th>SGAC</th>
                                                 <th>RECTORAT</th>
                                                 <th>Action</th>
@@ -54,8 +55,8 @@
                                             <tbody>
                                                 <?php
                                                 $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
-                                                INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
-                                                AND demande_bourse.ver_sgr='no_verify'";
+                                                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
+                                                    AND demande_bourse.ver_sgr='verify'";
                                                 $demande_run = mysqli_query($con, $demande);
 
                                                 if (mysqli_num_rows($demande_run) > 0) {
@@ -72,13 +73,10 @@
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
                                                             <td
-                                                                class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
-                                                            </td>
-                                                            <td
                                                                 class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
+                                                            <td><?= $list['date_ver_sgr']; ?></td>
                                                             <td
                                                                 class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -111,8 +109,8 @@
                                                 <?php
                                                 $user_id = $_SESSION['auth_user']['id_faculte'];
                                                 $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
-                                                INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
-                                                AND demande_bourse.ver_doyen='no_verify' AND agents.id_faculte='$user_id'";
+                                                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
+                                                    AND demande_bourse.ver_doyen='verify' AND agents.id_faculte='$user_id'";
                                                 $demande_run = mysqli_query($con, $demande);
 
                                                 if (mysqli_num_rows($demande_run) > 0) {
@@ -132,10 +130,7 @@
                                                                 class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
-                                                            <td
-                                                                class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
-                                                            </td>
+                                                            <td><?= $list['date_ver_doyen']; ?></td>
                                                             <td
                                                                 class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -167,8 +162,8 @@
                                             <tbody>
                                                 <?php
                                                 $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
-                                                INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
-                                                AND demande_bourse.ver_acad='no_verify'";
+                                                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
+                                                    AND demande_bourse.ver_acad='verify'";
                                                 $demande_run = mysqli_query($con, $demande);
 
                                                 if (mysqli_num_rows($demande_run) > 0) {
@@ -185,13 +180,10 @@
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
                                                             <td
-                                                                class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
+                                                                class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
+                                                                <?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
-                                                            <td
-                                                                class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
-                                                            </td>
+                                                            <td><?= $list['date_ver_acad']; ?></td>
                                                             <td
                                                                 class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -223,8 +215,8 @@
                                             <tbody>
                                                 <?php
                                                 $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
-                                                INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
-                                                AND demande_bourse.ver_rect='no_verify'";
+                                                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id 
+                                                    AND demande_bourse.ver_rect='verify'";
                                                 $demande_run = mysqli_query($con, $demande);
 
                                                 if (mysqli_num_rows($demande_run) > 0) {
@@ -241,13 +233,10 @@
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
                                                             <td
-                                                                class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
+                                                                class="<?= $list['ver_rect'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
+                                                                <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
-                                                            <td
-                                                                class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
-                                                                <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
-                                                            </td>
+                                                            <td><?= $list['date_ver_rect']; ?></td>
                                                             <td
                                                                 class="<?= $list['ver_acad'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_acad'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>

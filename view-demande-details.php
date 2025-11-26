@@ -30,7 +30,24 @@
                             </ol>
                         </div>
                     </div>
-
+                    <?php if ($_SESSION['auth_user']['role'] == 'SGR' && $list['ver_doyen'] == 'no_verify'): ?>
+                        <div class="alert alert-danger alert-dismissible alert-alt solid fade show">
+                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                            <strong>Attention!!! </strong> La demande n'a pas encore été validée par le Doyen de la faculté.
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($_SESSION['auth_user']['role'] == 'SGAC' && $list['ver_sgr'] == 'no_verify'): ?>
+                        <div class="alert alert-danger alert-dismissible alert-alt solid fade show">
+                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                            <strong>Attention!!! </strong>  La demande n'a pas encore été validée par le sécretaire chargé de recherche.
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT' && $list['ver_acad'] == 'no_verify'): ?>
+                        <div class="alert alert-danger alert-dismissible alert-alt solid fade show">
+                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                            <strong>Attention!!! </strong> La demande n'a pas encore été validée par le sécretaire général academique
+                        </div>
+                    <?php endif; ?>
                     <div class="row">
                         <div class="col-xl-3 col-xxl-4 col-lg-4">
                             <div class="row">
@@ -66,23 +83,22 @@
                                                 class="btn btn-primary btn-rounded px-4">Visualiser</a>
                                             <?php if ($_SESSION['auth_user']['role'] == 'DOYEN'): ?>
                                                 <form action="function.php" method="POST">
-                                                    <button type="submit" name="validation_doyen" value="<?= $list['id_ut_bour_fk']; ?>"
-                                                        class="btn btn-success btn-rounded px-4">Valider</button>
+                                                    <button type="submit" name="validation_doyen" value="<?= $list['id_ut_bour_fk']; ?>"class="btn btn-success btn-rounded px-4">Valider</button>
                                                 </form>
                                             <?php endif; ?>
-                                            <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'SGR' && $list['ver_doyen'] == 'verify'): ?>
                                                 <form action="function.php" method="POST">
                                                     <button type="submit" name="validation_sgr" value="<?= $list['id_ut_bour_fk']; ?>"
                                                         class="btn btn-success btn-rounded px-4">Valider</button>
                                                 </form>
                                             <?php endif; ?>
-                                            <?php if ($_SESSION['auth_user']['role'] == 'SGAC'): ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'SGAC' && $list['ver_sgr'] == 'verify'): ?>
                                                 <form action="function.php" method="POST">
                                                     <button type="submit" name="validation_sgac" value="<?= $list['id_ut_bour_fk']; ?>"
                                                         class="btn btn-success btn-rounded px-4">Valider</button>
                                                 </form>
                                             <?php endif; ?>
-                                            <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT'): ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT' && $list['ver_sgac'] == 'verify'): ?>
                                                 <form action="function.php" method="POST">
                                                     <button type="submit" name="validation_rectorat" value="<?= $list['id_ut_bour_fk']; ?>"
                                                         class="btn btn-success btn-rounded px-4">Valider</button>

@@ -295,16 +295,18 @@ $roles_autorises = ['SGR', 'DOYEN', 'SGAC', 'RECTORAT'];
                         </ul>
                     </li>
                     <?php endif; ?>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-building"></i>
-                            <span class="nav-text">Demande</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="view-demande.php">Voir les demandes</a></li>
-                            <li><a href="add-departments.ht">Add Departments</a></li>
-                            <li><a href="edit-departments.html">Edit Departments</a></li>
-                        </ul>
-                    </li>
+                    <?php if (in_array($role, $roles_autorises)): ?>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="la la-building"></i>
+                                <span class="nav-text">Demande</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="view-demande.php">Voir les demandes</a></li>
+                                <li><a href="add-departments.ht">Add Departments</a></li>
+                                <li><a href="edit-departments.html">Edit Departments</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-users"></i>
                             <span class="nav-text">Staff</span>
