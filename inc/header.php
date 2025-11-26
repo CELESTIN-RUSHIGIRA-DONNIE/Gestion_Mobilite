@@ -19,8 +19,14 @@ $user_id = $_SESSION['auth_user']['id'];
 $id_faculte = $_SESSION['auth_user']['id_faculte'];
 
 $role = $_SESSION['auth_user']['role'];
-
 $roles_autorises = ['SGR', 'DOYEN', 'SGAC', 'RECTORAT'];
+
+
+$sql = "SELECT COUNT(*) AS total FROM demande_bourse WHERE id_ut_bour_fk = $user_id AND status = 'en attente'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($result);
+
+$demande_en_attente = ($row['total'] > 0);
 ?>
 
 <!DOCTYPE html>
@@ -302,8 +308,6 @@ $roles_autorises = ['SGR', 'DOYEN', 'SGAC', 'RECTORAT'];
                             </a>
                             <ul aria-expanded="false">
                                 <li><a href="view-demande.php">Voir les demandes</a></li>
-                                <li><a href="add-departments.ht">Add Departments</a></li>
-                                <li><a href="edit-departments.html">Edit Departments</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>

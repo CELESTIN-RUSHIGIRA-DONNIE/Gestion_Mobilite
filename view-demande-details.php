@@ -98,7 +98,7 @@
                                                         class="btn btn-success btn-rounded px-4">Valider</button>
                                                 </form>
                                             <?php endif; ?>
-                                            <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT' && $list['ver_sgac'] == 'verify'): ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT' && $list['ver_acad'] == 'verify'): ?>
                                                 <form action="function.php" method="POST">
                                                     <button type="submit" name="validation_rectorat" value="<?= $list['id_ut_bour_fk']; ?>"
                                                         class="btn btn-success btn-rounded px-4">Valider</button>
@@ -235,16 +235,6 @@
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
                                                         <strong><?= $list['date_depart'] ?></strong>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-lg-6 col-md-4 col-sm-6 col-6">
-                                                        <h5 class="f-w-500">Date probable de retour <span
-                                                                class="pull-right">:</span>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_retour'] ?></strong>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">

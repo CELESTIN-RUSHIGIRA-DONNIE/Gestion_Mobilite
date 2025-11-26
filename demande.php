@@ -21,6 +21,13 @@
                     </div>
                 </div>
 
+                <?php if ($demande_en_attente): ?>
+                    <div class="alert alert-danger alert-dismissible alert-alt solid fade show">
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                        <strong>Attention!!! </strong> Vous avez déjà une demande de mobilité en attente. Veuillez attendre la décision avant de soumettre une nouvelle demande.
+                    </div>
+                <?php endif; ?>
+
                 <div class="row">
                     <div class="col-xl-12 col-xxl-12 col-sm-12">
                         <div class="card">
@@ -70,8 +77,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label class="form-label">Date de Retour</label>
-                                                <input name="date_retour" class="datepicker-default form-control"
-                                                    id="datepicker">
+                                                <input type="date" name="date_retour" class="datepicker-default form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -87,8 +93,14 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <button type="submit" name="send_demande" class="btn btn-primary">Submit</button>
-                                            <button type="submit" class="btn btn-light">Cencel</button>
+                                            <?php if ($demande_en_attente): ?>
+                                                <button class="btn btn-warning" disabled>
+                                                    Vous avez déjà une demande en attente
+                                                </button>                                              
+                                            <?php else: ?>
+                                                <button type="submit" name="send_demande" class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-light">Cencel</button>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </form>
