@@ -78,8 +78,8 @@ $pdf->SetFont('Times','',11);
 $pdf->Cell(0,7,utf8_decode("Charge horaire prevue : "),0,1);
 $pdf->Cell(0,7,utf8_decode('Charge horaire deja prestée : '),0,1);
 $pdf->Cell(0,7,utf8_decode("Nombre d'etudiants sous encadrement : "),0,1);
-$pdf->Cell(0,7,utf8_decode('Avis du Doyen : '),0,1);
-$pdf->Cell(0,7,utf8_decode("Justification de l'avis : "),0,1);
+$pdf->Cell(0,7,utf8_decode('Avis du Doyen :   ' . $list['avis_doyen']),0,1);
+$pdf->Cell(0,7,utf8_decode("Justification de l'avis :   " . $list['justification_doyen']),0,1);
 $pdf->Ln(5);
 
 $pdf->SetFont('Times','B',12);

@@ -4,7 +4,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © &amp; Concu Par <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+                <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
             </div>
         </div>
         <!--**********************************

@@ -17,6 +17,10 @@ if (!isset($_SESSION['auth_user'])) {
 
 $user_id = $_SESSION['auth_user']['id'];
 $id_faculte = $_SESSION['auth_user']['id_faculte'];
+
+$role = $_SESSION['auth_user']['role'];
+
+$roles_autorises = ['SGR', 'DOYEN', 'SGAC', 'RECTORAT'];
 ?>
 
 <!DOCTYPE html>
@@ -261,7 +265,9 @@ $id_faculte = $_SESSION['auth_user']['id_faculte'];
                             <span class="nav-text">Agents</span>
                         </a>
                         <ul aria-expanded="false">
+                            <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
                             <li><a href="add-agent.php">Ajouter agents</a></li>
+                            <?php endif; ?>
                             <li><a href="list-agents.php">Agents</a></li>
                             <li><a href="edit-agent.html">Edit Agents</a></li>
                             <li><a href="about-agent.html">About Agents</a></li>
@@ -278,6 +284,7 @@ $id_faculte = $_SESSION['auth_user']['id_faculte'];
                             <li><a href="about-courses.html">About Courses</a></li>
                         </ul>
                     </li>
+                    <?php if (!in_array($role, $roles_autorises)): ?>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-book"></i>
                             <span class="nav-text">Operations</span>
@@ -287,6 +294,7 @@ $id_faculte = $_SESSION['auth_user']['id_faculte'];
                             <li><a href="rapport.php">Rapport</a></li>
                         </ul>
                     </li>
+                    <?php endif; ?>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-building"></i>
                             <span class="nav-text">Demande</span>

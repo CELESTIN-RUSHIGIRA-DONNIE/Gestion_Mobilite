@@ -33,8 +33,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Liste de Faculté </h4>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#basicModal">+ Ajouter Faculté</button>
+                                <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">+ Ajouter Faculté</button>
+                                <?php endif; ?>
                             </div>
                             <div class="modal fade" id="basicModal">
                                 <div class="modal-dialog" role="document">
@@ -122,8 +123,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Departement</h4>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#basicModal2">+ Ajouter Departement</button>
+                                <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal2">+ Ajouter Departement</button>
+                                <?php endif; ?>
                             </div>
                             <div class="modal fade" id="basicModal2">
                                 <div class="modal-dialog" role="document">

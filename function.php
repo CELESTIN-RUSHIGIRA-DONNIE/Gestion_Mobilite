@@ -354,7 +354,7 @@ else if (isset($_POST["avis_doyen"])) {
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
         $_SESSION['toastr'] = ['type' => 'success','message' => 'Avis enregistré avec succès.'];
-        header("Location: view-demande-details.php");
+        header("Location: view-demande.php");
         exit;
     } else {
         $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de l\'enregistrement de l\'avis.'];
@@ -432,5 +432,4 @@ else if (isset($_POST["validation_rectorat"])) {
         exit(0);
     }
 }
-
 ?>
