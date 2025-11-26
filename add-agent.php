@@ -97,6 +97,7 @@
                                             <div class="form-group">
                                                 <label class="form-label">Role</label>
                                                 <select class="form-control" name="role">
+                                                    <option>Personnel</option>
                                                     <option>SGR</option>
                                                     <option>DOYEN</option>
                                                     <option>SGAC</option>

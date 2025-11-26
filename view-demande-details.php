@@ -62,8 +62,32 @@
                                             </li>
                                         </ul>
                                         <div class="card-footer text-center border-0 mt-0">
-                                            <a href="fiche.php?id=<?= $list['id_ut_bour_fk']; ?>" class="btn btn-primary btn-rounded px-4">Visualiser</a>
-                                            <a href="javascript:void(0);" class="btn btn-success btn-rounded px-4">Valider</a>
+                                            <a href="fiche.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                class="btn btn-primary btn-rounded px-4">Visualiser</a>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'DOYEN'): ?>
+                                                <form action="function.php" method="POST">
+                                                    <button type="submit" name="validation_doyen" value="<?= $list['id_ut_bour_fk']; ?>"
+                                                        class="btn btn-success btn-rounded px-4">Valider</button>
+                                                </form>
+                                            <?php endif; ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                                <form action="function.php" method="POST">
+                                                    <button type="submit" name="validation_sgr" value="<?= $list['id_ut_bour_fk']; ?>"
+                                                        class="btn btn-success btn-rounded px-4">Valider</button>
+                                                </form>
+                                            <?php endif; ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'SGAC'): ?>
+                                                <form action="function.php" method="POST">
+                                                    <button type="submit" name="validation_sgac" value="<?= $list['id_ut_bour_fk']; ?>"
+                                                        class="btn btn-success btn-rounded px-4">Valider</button>
+                                                </form>
+                                            <?php endif; ?>
+                                            <?php if ($_SESSION['auth_user']['role'] == 'RECTORAT'): ?>
+                                                <form action="function.php" method="POST">
+                                                    <button type="submit" name="validation_rectorat" value="<?= $list['id_ut_bour_fk']; ?>"
+                                                        class="btn btn-success btn-rounded px-4">Valider</button>
+                                                </form>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="col-lg-12">
+                                <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header text-center">
                                             <h2 class="card-title"><B>Validation Doyen</B></h2>
@@ -148,7 +172,8 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['type_mobilite'] ?></strong></div>
+                                                        <strong><?= $list['type_mobilite'] ?></strong>
+                                                    </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 col-md-6 col-sm-8 col-8">
@@ -165,7 +190,8 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['dure_sejour'] ?></strong></div>
+                                                        <strong><?= $list['dure_sejour'] ?></strong>
+                                                    </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 col-md-4 col-sm-6 col-6">
@@ -192,7 +218,8 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_depart'] ?></strong></div>
+                                                        <strong><?= $list['date_depart'] ?></strong>
+                                                    </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 col-md-4 col-sm-6 col-6">
@@ -201,7 +228,8 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_retour'] ?></strong></div>
+                                                        <strong><?= $list['date_retour'] ?></strong>
+                                                    </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 col-md-4 col-sm-6 col-6">
@@ -210,7 +238,8 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_retour'] ?></strong></div>
+                                                        <strong><?= $list['date_retour'] ?></strong>
+                                                    </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 col-md-4 col-sm-6 col-6">
@@ -219,37 +248,44 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-8 col-8">
-                                                        <strong><?= $list['soutient_uea'] ?></strong></div>
+                                                        <strong><?= $list['soutient_uea'] ?></strong>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-header">
-                                        <h4 class="card-title">Avis du Doyen de la Faculté</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="basic-form">
-                                            <form>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Avis</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" placeholder="Avis">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Justification</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" placeholder="Justification">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-10">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                    <?php if ($_SESSION['auth_user']['role'] == 'DOYEN'): ?>
+                                        <div class="card-header">
+                                            <h4 class="card-title">Avis du Doyen de la Faculté</h4>
                                         </div>
-                                    </div>
+                                        <div class="card-body">
+                                            <div class="basic-form">
+                                                <form action="function.php" method="post">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Avis</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="avis" class="form-control"
+                                                                placeholder="Votre avis">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Justification</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="justification" class="form-control"
+                                                                placeholder="Justification">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            <button type="submit" name="avis_doyen"
+                                                                value="<?= $list['id_ut_bour_fk']; ?>"
+                                                                class="btn btn-primary">Enregistrer</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

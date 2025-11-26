@@ -342,4 +342,95 @@ else if (isset($_POST["send_demande"])) {
         }
     }
 }
+
+else if (isset($_POST["avis_doyen"])) {
+    $id_ut = $_POST["avis_doyen"];
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $avis = mysqli_real_escape_string($con, $_POST['avis']);
+    $justification = mysqli_real_escape_string($con, $_POST['justification']);
+
+    $query = "UPDATE demande_bourse SET avis_doyen='$avis', justification_doyen='$justification' WHERE id_ut_bour_fk='$id_ut'";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Avis enregistré avec succès.'];
+        header("Location: view-demande-details.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de l\'enregistrement de l\'avis.'];
+        header('Location: view-demande-details.php');
+        exit(0);
+    }
+}
+
+else if (isset($_POST["validation_doyen"])) {
+    
+    $id_ut = $_POST["validation_doyen"];
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $query = "UPDATE demande_bourse SET ver_doyen='verify', date_ver_doyen=NOW(), id_doyen=$user_id WHERE id_ut_bour_fk='$id_ut'";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
+        header("Location: view-demande.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la validation.'];
+        header('Location: view-demande.php');
+        exit(0);
+    }
+}
+
+else if (isset($_POST["validation_sgr"])) {
+    $id_ut = $_POST["validation_sgr"];
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $query = "UPDATE demande_bourse SET ver_sgr='verify', date_ver_sgr=NOW(), id_sgr=$user_id  WHERE id_ut_bour_fk='$id_ut'";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+                $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
+        header("Location: view-demande.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la validation.'];
+        header('Location: view-demande.php');
+        exit(0);
+    }
+}
+
+else if (isset($_POST["validation_sgac"])) {
+
+    $id_ut = $_POST["validation_sgac"];
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $query = "UPDATE demande_bourse SET ver_sgac='verify', date_ver_sgac=NOW(), id_sgac=$user_id  WHERE id_ut_bour_fk='$id_ut'";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
+        header("Location: view-demande.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la validation.'];
+        header('Location: view-demande.php');
+        exit(0);
+    }
+}
+
+else if (isset($_POST["validation_rectorat"])) {
+    $id_ut = $_POST["validation_rectorat"];
+    $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
+
+    $query = "UPDATE demande_bourse SET ver_rect='verify', date_ver_rect=NOW(), id_rect=$user_id  WHERE id_ut_bour_fk='$id_ut'";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
+        header("Location: view-demande.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la validation.'];
+        header('Location: view-demande.php');
+        exit(0);
+    }
+}
+
 ?>

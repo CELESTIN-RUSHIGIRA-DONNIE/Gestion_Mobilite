@@ -30,7 +30,7 @@ $pdf->SetFont('Times','B',12);
 $pdf->Cell(0,10,utf8_decode('SECRETARIAT GENERAL CHARGE DE LA RECHERCHE'),0,1,'C');
 $pdf->Ln(5);
 $pdf->Cell(0,8,utf8_decode('DOCUMENT DE REGLEMENTATION DE LA MOBILITE DES ENSEIGNANTS'),0,1,'C');
-$pdf->Ln(10);
+$pdf->Ln(5);
 if (isset($_GET['id'])) {
     $fiche_id = $_GET['id'];
     $query = "SELECT agents.*, demande_bourse.*, faculte.*, departement.* FROM demande_Bourse 
@@ -41,17 +41,17 @@ if (isset($_GET['id'])) {
 $demande_run = mysqli_query($con, $query);
 
 while($list = mysqli_fetch_assoc($demande_run)) {
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,8,utf8_decode('I.   Information sur le requerant'),0,1);
 $pdf->SetFont('Times','',11);
 $pdf->Cell(0,7,utf8_decode('Noms :    '. $list['nom'] . ' ' . $list['postnom'] . ' ' . $list['prenom']),0,1);
 $pdf->Cell(0,7,utf8_decode('Grade :   ' . $list['Grade']),0,1);
-$pdf->Cell(0,7,utf8_decode('Contacts (Email et téléphone) : ' . $list['email'] . ' / ' . $list['telephone']),0,1);
-$pdf->Cell(0,7,utf8_decode('Faculté : ' . $list['name']),0,1);
-$pdf->Cell(0,7,utf8_decode('Departement : ' . $list['nom_departement']),0,1);
+$pdf->Cell(0,7,utf8_decode('Contacts (Email et téléphone) :   ' . $list['email'] . ' / ' . $list['telephone']),0,1);
+$pdf->Cell(0,7,utf8_decode('Faculté :   ' . $list['name']),0,1);
+$pdf->Cell(0,7,utf8_decode('Departement :   ' . $list['nom_departement']),0,1);
 $pdf->Ln(5);
 
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,8,utf8_decode('II.   Information sur la mobilité (joindre tous les documents y relatifs)'),0,1);
 
 $pdf->SetFont('Times','',11);
@@ -71,7 +71,7 @@ $pdf->Cell(0,7,utf8_decode("Soutien requis de l'UEA :   " . $list['soutient_uea'
 $pdf->Cell(0,7,utf8_decode('Date et signature du requerant : '),0,1);
 $pdf->Ln(5);
 
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,8,utf8_decode("III.   Situation des prestations et avis du Doyen"),0,1);
 
 $pdf->SetFont('Times','',11);
@@ -82,13 +82,13 @@ $pdf->Cell(0,7,utf8_decode('Avis du Doyen : '),0,1);
 $pdf->Cell(0,7,utf8_decode("Justification de l'avis : "),0,1);
 $pdf->Ln(5);
 
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,8,utf8_decode('IV.   Avis des autorites de l\'université'),0,1);
 $pdf->SetFont('Times','',11);
 $pdf->Cell(0,7,utf8_decode('Avis du Secrétaire chargé de Recherche : '),0,1);
 $pdf->Cell(0,7,utf8_decode('Avis du Secrétaire  Général Académique : '),0,1);
 
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Ln(3);
 $pdf->Cell(0,8,utf8_decode('V.   Decision du comite de gestion :'),0,1);
 $pdf->SetFont('Times','',11);
@@ -99,7 +99,7 @@ d.  Autorise a la mobilite avec suppression du salaire
 e.  Autorise a la mobilite avec mise en disponibilite
 f.  Non autorise a la mobilite"));
 $pdf->Ln(5);
-$pdf->SetFont('Times','B',11);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,7,utf8_decode('VI.   Autorisation de la Rectrice'),0,1,'C');
 $pdf->Ln(15);
 $pdf->Cell(0,7,utf8_decode('Date et signature  '),0,1,'C');
