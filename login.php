@@ -55,11 +55,11 @@ session_start();
                                             <div class="form-group">
                                                <div class="custom-control custom-checkbox ml-1">
 													<input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
-													<label class="custom-control-label" for="basic_checkbox_1">Remember my preference</label>
+													<label class="custom-control-label" for="basic_checkbox_1">Rappellez-moi</label>
 												</div>
                                             </div>
                                             <div class="form-group">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                                <a href="page-forgot-password.php">Mot de passe oublié?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">

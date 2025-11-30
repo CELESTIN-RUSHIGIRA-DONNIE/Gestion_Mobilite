@@ -14,6 +14,10 @@
             if (mysqli_num_rows($query_run) > 0) {
                 foreach ($query_run as $list) {
                     ?>
+
+
+
+
                     <div class="row page-titles mx-0">
                         <div class="col-sm-6 p-md-0">
                             <div class="welcome-text">
@@ -234,7 +238,23 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_depart'] ?></strong>
+                                                        <strong><?= $dt= $list['date_depart'] ?></strong>
+                                                        <?= $dt; ?>
+
+                                                        <?php
+                                                                    $date_jour = strtotime(date("Y-m-d"));
+                                                                    $dt1 = strtotime(datetime: "$dt");
+                                                                    echo '<br>';
+
+                                                                    $days = ($date_jour - $dt1) / 60 / 60 / 24;
+                                                                  
+                                                                    if($days >0){
+                                                                        echo "<span style='color:red;'>Départ dans $days jours</span>";
+                                                                    } else{
+                                                                        echo "<span style='color:green;'>Déjà parti</span>";
+                                                                    }
+                                                        ?>
+
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">

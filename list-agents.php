@@ -34,20 +34,22 @@
                             <div class="card-header">
                                 <h4 class="card-title">Liste de Agents </h4>
                                 <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
-                                <a href="add-agent.php" class="btn btn-primary">+ Ajouter Agents</a>
+                                    <a href="add-agent.php" class="btn btn-primary">+ Ajouter Agents</a>
                                 <?php endif; ?>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive recentOrderTable">
-                                    <table class="table verticle-middle table-responsive-md">
+                                <div class="table-responsive">
+                                    <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No.</th>
-                                                <th scope="col">Matricule</th>
-                                                <th scope="col">Noms</th>
-                                                 <th scope="col">Email</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">Action</th>
+                                                <th>Image</th>
+                                                <th>Matricule</th>
+                                                <th>Noms</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                                <th>Action</th>
+                                                <?php endif; ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -59,26 +61,28 @@
                                                 foreach ($agents_run as $list) {
                                                     ?>
                                                     <tr>
-                                                        <td><?= $list['id'] ?></td>
+                                                        <td class="py-1">
+                                                            <?php echo '<img class="rounded-circle" width="35" src="uploads/' . $list['photo'] . '" alt="User Image">' ?>
+                                                        </td>
                                                         <td><?= $list['matricule'] ?></td>
                                                         <td><?= $list['nom'] ?></td>
                                                         <td><?= $list['email'] ?></td>
                                                         <td><?= $list['role'] ?></td>
+                                                        <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
                                                         <td>
-                                                            <a href="edit-agent.php?id=<?= $list['id'] ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                            <a href="edit-agent.php?id=<?= $list['id'] ?>"class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                                                         </td>
+                                                        <?php endif; ?>
                                                     </tr>
 
                                                     <?php
                                                 }
                                             } else {
                                                 ?>
-                                                <tr>
-                                                    <td colspan="4" class="bg-danger text-white text-center">Pas des
-                                                        facultés Enregistrer</td>
-                                                </tr>
-
+                                                    <tr>
+                                                        <td colspan="5" class="bg-danger text-white text-center">Pas d'agent enregistré</td>
+                                                    </tr>
                                                 <?php
                                             }
                                             ?>
@@ -90,52 +94,68 @@
                     </div>
                     <div id="grid-view" class="tab-pane fade col-lg-12">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="card card-profile">
-                                    <div class="card-header justify-content-end pb-0">
-                                        <div class="dropdown">
-                                            <button class="btn btn-link" type="button" data-toggle="dropdown">
-                                                <span class="dropdown-dots fs--1"></span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right border py-0">
-                                                <div class="py-2">
-                                                    <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                    <a class="dropdown-item text-danger"
-                                                        href="javascript:void(0);">Delete</a>
+                            <?php
+                            $affiche_agents = "SELECT * FROM agents";
+                            $agents_run = mysqli_query($con, $affiche_agents);
+
+                            if (mysqli_num_rows($agents_run) > 0) {
+                                foreach ($agents_run as $list) {
+                                    ?>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div class="card card-profile">
+                                            <div class="card-header justify-content-end pb-0">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-link" type="button" data-toggle="dropdown">
+                                                        <span class="dropdown-dots fs--1"></span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right border py-0">
+                                                        <div class="py-2">
+                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                                                            <a class="dropdown-item text-danger"
+                                                                href="javascript:void(0);">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body pt-2">
+                                                <div class="text-center">
+                                                    <div class="profile-photo">
+                                                        <?php echo '<img class="img-fluid rounded-circle" width="100" src="uploads/' . $list['photo'] . '" alt="User Image">' ?>
+                                                    </div>
+                                                    <h4 class="mt-4 mb-1"><?= $list['nom'].' '. $list['postnom'].' '. $list['prenom'] ?></h4>
+                                                    <p class="text-muted"><?= $list['email']?></p>
+                                                    <ul class="list-group mb-3 list-group-flush">
+                                                        <li class="list-group-item px-0 d-flex justify-content-between">
+                                                            <span class="mb-0">Grade :</span><strong><?= $list['Grade']?></strong>
+                                                        </li>
+                                                        <li class="list-group-item px-0 d-flex justify-content-between">
+                                                            <span class="mb-0">Genre :</span><strong><?= $list['sexe']?></strong>
+                                                        </li>
+                                                        <li class="list-group-item px-0 d-flex justify-content-between">
+                                                            <span class="mb-0">Phone :</span><strong><?= $list['telephone']?></strong>
+                                                        </li>
+                                                        <li class="list-group-item px-0 d-flex justify-content-between">
+                                                            <span class="mb-0">Role:</span><strong><?= $list['role']?></strong>
+                                                        </li>
+                                                    </ul>
+                                                    <a class="btn btn-outline-primary btn-rounded mt-3 px-4"
+                                                        href="professor-profile.html">Read More</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body pt-2">
-                                        <div class="text-center">
-                                            <div class="profile-photo">
-                                                <img src="assets/images/profile/small/pic2.jpg" width="100"
-                                                    class="img-fluid rounded-circle" alt="">
-                                            </div>
-                                            <h3 class="mt-4 mb-1">Alexander</h3>
-                                            <p class="text-muted">M.COM., P.H.D.</p>
-                                            <ul class="list-group mb-3 list-group-flush">
-                                                <li class="list-group-item px-0 d-flex justify-content-between">
-                                                    <span class="mb-0">Gender :</span><strong>Male</strong>
-                                                </li>
-                                                <li class="list-group-item px-0 d-flex justify-content-between">
-                                                    <span class="mb-0">Phone No. :</span><strong>+01 123 456
-                                                        7890</strong>
-                                                </li>
-                                                <li class="list-group-item px-0 d-flex justify-content-between">
-                                                    <span class="mb-0">Email:</span><strong>info@example.com</strong>
-                                                </li>
-                                                <li class="list-group-item px-0 d-flex justify-content-between">
-                                                    <span class="mb-0">Address:</span><strong>#8901 Marmora
-                                                        Road</strong>
-                                                </li>
-                                            </ul>
-                                            <a class="btn btn-outline-primary btn-rounded mt-3 px-4"
-                                                href="professor-profile.html">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                <tr>
+                                    <td colspan="4" class="bg-danger text-white text-center">Pas d'agent enregistré</td>
+                                </tr>
+
+                                <?php
+                            }
+                            ?>
+
                         </div>
                     </div>
                 </div>

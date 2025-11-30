@@ -71,7 +71,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive recentOrderTable">
-                                    <table class="table verticle-middle table-responsive-md text-center">
+                                    <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
@@ -185,7 +185,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive recentOrderTable">
-                                    <table class="table verticle-middle table-responsive-md text-center">
+                                    <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>

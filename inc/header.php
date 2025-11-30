@@ -272,7 +272,7 @@ $demande_en_attente = ($row['total'] > 0);
                         </a>
                         <ul aria-expanded="false">
                             <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
-                            <li><a href="add-agent.php">Ajouter agents</a></li>
+                                <li><a href="add-agent.php">Ajouter agents</a></li>
                             <?php endif; ?>
                             <li><a href="list-agents.php">Agents</a></li>
                             <li><a href="edit-agent.html">Edit Agents</a></li>
@@ -291,15 +291,24 @@ $demande_en_attente = ($row['total'] > 0);
                         </ul>
                     </li>
                     <?php if (!in_array($role, $roles_autorises)): ?>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-book"></i>
-                            <span class="nav-text">Operations</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="demande.php">Mobilite</a></li>
-                            <li><a href="rapport.php">Rapport</a></li>
-                        </ul>
-                    </li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="la la-book"></i>
+                                <span class="nav-text">Operations</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="demande.php">Mobilite</a></li>
+                                <li><a href="rapport.php">Rapport</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="la la-graduation-cap"></i>
+                                <span class="nav-text">Ma demande</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="ma-demande.php">Ma demande</a></li>
+                                <li><a href="historique.php">Historique</a></li>
+                            </ul>
+                        </li>
                     <?php endif; ?>
                     <?php if (in_array($role, $roles_autorises)): ?>
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -322,10 +331,13 @@ $demande_en_attente = ($row['total'] > 0);
                             <li><a href="staff-profile.html">Staff Profile</a></li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
+
+
+        

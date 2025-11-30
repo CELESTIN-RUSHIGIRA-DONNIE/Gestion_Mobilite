@@ -388,7 +388,7 @@ else if (isset($_POST["validation_sgr"])) {
     $query = "UPDATE demande_bourse SET ver_sgr='verify', date_ver_sgr=NOW(), id_sgr=$user_id  WHERE id_ut_bour_fk='$id_ut'";
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
-                $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
         header("Location: view-demande.php");
         exit;
     } else {
@@ -430,6 +430,32 @@ else if (isset($_POST["validation_rectorat"])) {
         $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la validation.'];
         header('Location: view-demande.php');
         exit(0);
+    }
+}
+
+
+
+else if (isset($_POST['edit_agents'])) {
+
+    $agent_id = $_POST['agent_id'];
+
+    // $matricule = mysqli_real_escape_string($con, $_POST['matricule']);
+    $matricule = $_POST['matricule'];
+    $id_faculte = $_POST['id_faculte'];
+    $id_departement = $_POST['id_departement'];
+    $role = mysqli_real_escape_string($con, $_POST['role']);
+
+    $query = "UPDATE agents SET matricule=$matricule, id_faculte='$id_faculte', id_departement='$id_departement',role='$role' WHERE id='$agent_id'";
+    $query_run = mysqli_query($con, $query);
+    
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Agent Modifier avec success.'];
+        header("Location: list-agents.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'une erreur de modification.'];
+        header("Location: edit-agent.php");
+        exit;
     }
 }
 ?>
