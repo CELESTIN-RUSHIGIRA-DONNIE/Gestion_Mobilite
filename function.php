@@ -371,6 +371,27 @@ else if (isset($_POST["validation_doyen"])) {
     $query = "UPDATE demande_bourse SET ver_doyen='verify', date_ver_doyen=NOW(), id_doyen=$user_id WHERE id_ut_bour_fk='$id_ut'";
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
+
+
+        $sql_sgr = "SELECT email FROM agents WHERE role = 'SGR'";
+        $res_sgr = mysqli_query($con, $sql_sgr);
+
+        $emails_sgr = [];
+        while ($row = mysqli_fetch_assoc($res_sgr)) {
+            $emails_sgr[] = $row['email'];
+        }
+
+        if (!empty($emails_sgr)) {
+            // 2. Construire et envoyer le mail
+            $to      = implode(", ", $emails_sgr); // plusieurs destinataires séparés par virgule [web:3][web:17]
+            $subject = "Demande bourse #".$id_ut." validée par le doyen";
+            $message = "Bonjour,\n\nLe doyen a validé la demande de bourse #".$id_ut.".\n"
+                    . "Merci de procéder à la validation SGR.\n\nCordialement.";
+            $headers = "From: noreply@tonsite.com\r\n";
+
+            mail($to, $subject, $message, $headers); // [web:11][web:15]
+        }
+
         $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];
         header("Location: view-demande.php");
         exit;

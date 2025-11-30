@@ -29,13 +29,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="profile-photo">
-                                    <?php
-                                        // Vérifie si une image est définie pour l'utilisateur connecté
-                                        $user_image = !empty($_SESSION['auth_user']['photo'])
-                                            ? 'uploads/' . $_SESSION['auth_user']['photo']   // Chemin vers la photo uploadée
-                                            : 'assets/images/default.jpg';             // Image par défaut
-                                        ?>
-                                        <img src="assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                        <img src="uploads/<?= htmlspecialchars($_SESSION['auth_user']['photo']) ?>" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-9 col-12">
@@ -98,56 +92,6 @@
                                 regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
                                 your mouth.</p>
                         </div>
-                        <div class="profile-interest mt-4 pb-2 border-bottom-1">
-                            <h5 class="text-primary d-inline">Interest</h5>
-                            <div class="row mt-4">
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                    <a href="javascript:void()" class="interest-cat">
-                                        <img src="assets/images/profile/2.jpg" alt="" class="img-fluid">
-                                        <p>Shopping Mall</p>
-                                    </a>
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                    <a href="javascript:void()" class="interest-cat">
-                                        <img src="assets/images/profile/3.jpg" alt="" class="img-fluid">
-                                        <p>Photography</p>
-                                    </a>
-                                </div>
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                    <a href="javascript:void()" class="interest-cat">
-                                        <img src="assets/images/profile/4.jpg" alt="" class="img-fluid">
-                                        <p>Art &amp; Gallery</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profile-news mt-4 pb-3">
-                            <h5 class="text-primary d-inline">Our Latest News</h5>
-                            <div class="media pt-3 pb-3">
-                                <img src="images/profile/5.jpg" alt="image" class="mr-3">
-                                <div class="media-body">
-                                    <h5 class="m-b-5">John Tomas</h5>
-                                    <p>I shared this on my fb wall a few months back, and I thought I'd share it here
-                                        again because it's such a great read</p>
-                                </div>
-                            </div>
-                            <div class="media pt-3 pb-3">
-                                <img src="images/profile/6.jpg" alt="image" class="mr-3">
-                                <div class="media-body">
-                                    <h5 class="m-b-5">John Tomas</h5>
-                                    <p>I shared this on my fb wall a few months back, and I thought I'd share it here
-                                        again because it's such a great read</p>
-                                </div>
-                            </div>
-                            <div class="media pt-3 pb-3">
-                                <img src="images/profile/7.jpg" alt="image" class="mr-3">
-                                <div class="media-body">
-                                    <h5 class="m-b-5">John Tomas</h5>
-                                    <p>I shared this on my fb wall a few months back, and I thought I'd share it here
-                                        again because it's such a great read</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -177,51 +121,6 @@
                                                     href="javascript:void()"><i class="ti-clip"></i> </a>
                                                 <a href="javascript:void()"><i class="ti-camera"></i> </a><a
                                                     href="javascript:void()" class="btn btn-primary">Post</a>
-                                            </div>
-                                            <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                <img src="images/profile/8.jpg" alt="" class="img-fluid">
-                                                <a class="post-title" href="javascript:void()">
-                                                    <h4>Collection of textile samples lay spread</h4>
-                                                </a>
-                                                <p>A wonderful serenity has take possession of my entire soul like these
-                                                    sweet morning of spare which enjoy whole heart.A wonderful serenity
-                                                    has take possession of my entire soul like these sweet morning
-                                                    of spare which enjoy whole heart.</p>
-                                                <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                            class="fa fa-heart"></i></span>Like</button>
-                                                <button class="btn btn-secondary"><span class="mr-3"><i
-                                                            class="fa fa-reply"></i></span>Reply</button>
-                                            </div>
-                                            <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                <img src="images/profile/9.jpg" alt="" class="img-fluid">
-                                                <a class="post-title" href="javascript:void()">
-                                                    <h4>Collection of textile samples lay spread</h4>
-                                                </a>
-                                                <p>A wonderful serenity has take possession of my entire soul like these
-                                                    sweet morning of spare which enjoy whole heart.A wonderful serenity
-                                                    has take possession of my entire soul like these sweet morning
-                                                    of spare which enjoy whole heart.</p>
-                                                <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                            class="fa fa-heart"></i></span>Like</button>
-                                                <button class="btn btn-secondary"><span class="mr-3"><i
-                                                            class="fa fa-reply"></i></span>Reply</button>
-                                            </div>
-                                            <div class="profile-uoloaded-post pb-5">
-                                                <img src="images/profile/8.jpg" alt="" class="img-fluid">
-                                                <a class="post-title" href="javascript:void()">
-                                                    <h4>Collection of textile samples lay spread</h4>
-                                                </a>
-                                                <p>A wonderful serenity has take possession of my entire soul like these
-                                                    sweet morning of spare which enjoy whole heart.A wonderful serenity
-                                                    has take possession of my entire soul like these sweet morning
-                                                    of spare which enjoy whole heart.</p>
-                                                <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                            class="fa fa-heart"></i></span>Like</button>
-                                                <button class="btn btn-secondary"><span class="mr-3"><i
-                                                            class="fa fa-reply"></i></span>Reply</button>
-                                            </div>
-                                            <div class="text-center mb-2"><a href="javascript:void()"
-                                                    class="btn btn-primary">Load More</a>
                                             </div>
                                         </div>
                                     </div>
