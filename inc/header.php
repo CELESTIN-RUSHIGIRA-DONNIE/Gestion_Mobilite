@@ -27,7 +27,9 @@ $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
 
 $demande_en_attente = ($row['total'] > 0);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -196,7 +198,7 @@ $demande_en_attente = ($row['total'] > 0);
                                     <img src="<?= htmlspecialchars($user_image); ?>" width="20" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="app-profile.html" class="dropdown-item ai-icon">
+                                    <a href="view-profile.php" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                             viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
@@ -263,7 +265,9 @@ $demande_en_attente = ($row['total'] > 0);
                         <ul aria-expanded="false">
                             <li><a href="add-profile.php">Ajouter Profile</a></li>
                             <li><a href="view-profile.php">Voir mon profile</a></li>
-                            <li><a href="info.php">Mes infos</a></li>
+                            <?php if (!in_array($role, $roles_autorises)): ?>
+                                <li><a href="ma-demande.php">Mes infos</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -305,7 +309,7 @@ $demande_en_attente = ($row['total'] > 0);
                                 <span class="nav-text">Ma demande</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="ma-demande.php">Ma demande</a></li>
+                                <li><a href="info.php">Ma demande</a></li>
                                 <li><a href="historique.php">Historique</a></li>
                             </ul>
                         </li>

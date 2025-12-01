@@ -324,12 +324,17 @@ else if (isset($_POST["send_demande"])) {
     $soutient_uea = mysqli_real_escape_string($con, $_POST['soutient_uea']);
     $status = 'en attente';
 
+    $fichier = $_FILES["mon_fichier"];
+    $nom = basename($fichier["name"]);
+    $chemin = "uploads/fichier/" . $nom;
+
+    if (move_uploaded_file($fichier["tmp_name"], $chemin)) {
     
-    $sql_insert = "INSERT INTO demande_bourse (code_bourse,type_mobilite,objectif_mobilite,dure_sejour,organisation_accueil,programme_intervention,date_depart,date_retour,finance_mobilite,soutient_uea,status, id_ut_bour_fk) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql_insert = "INSERT INTO demande_bourse (code_bourse,type_mobilite,objectif_mobilite,dure_sejour,organisation_accueil,programme_intervention,date_depart,date_retour,finance_mobilite,soutient_uea,status,contrat_bourse,chemin_contrat,id_ut_bour_fk) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     if ($stmt = $con->prepare($sql_insert)) {
-        $stmt->bind_param("ssssssssssss", $code_bourse,$type_mobilite,
-        $objectif_mobilite,$dure_sejour,$organisation_accueil,$programme_intervention,$date_depart,$date_retour,$finance_mobilite,$soutient_uea,$status,$user_id);
+        $stmt->bind_param("sssssssssssssi", $code_bourse,$type_mobilite,
+        $objectif_mobilite,$dure_sejour,$organisation_accueil,$programme_intervention,$date_depart,$date_retour,$finance_mobilite,$soutient_uea,$status,$nom,$chemin,$user_id);
         if ($stmt->execute()) {
             $_SESSION['toastr'] = ['type' => 'success','message' => 'Demande envoyée avec succès'];
             $stmt->close();
@@ -340,6 +345,11 @@ else if (isset($_POST["send_demande"])) {
             header("Location: demande.php");
             exit;
         }
+    }
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors du téléchargement du fichier.'];
+        header("Location: demande.php");
+        exit;
     }
 }
 
@@ -424,7 +434,7 @@ else if (isset($_POST["validation_sgac"])) {
     $id_ut = $_POST["validation_sgac"];
     $user_id = $_SESSION['auth_user']['id']; // ID de l'utilisateur connecté
 
-    $query = "UPDATE demande_bourse SET ver_sgac='verify', date_ver_sgac=NOW(), id_sgac=$user_id  WHERE id_ut_bour_fk='$id_ut'";
+    $query = "UPDATE demande_bourse SET ver_acad='verify', date_ver_acad=NOW(), id_acad=$user_id  WHERE id_ut_bour_fk='$id_ut'";
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
         $_SESSION['toastr'] = ['type' => 'success','message' => 'Validation réussie.'];

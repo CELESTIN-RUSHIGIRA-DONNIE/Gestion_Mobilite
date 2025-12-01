@@ -21,6 +21,14 @@
 
         <div class="row">
             <div class="col-lg-12">
+                <?php include("inc/fonction.php"); ?>
+                <?php
+                    if($demande_validee): ?>
+                    <div class="alert alert-success alert-dismissible alert-alt solid fade show">
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                        <strong>Félicitations!</strong> Votre demande de mobilité a été entièrement validée. Vous pouvez maintenant télécharger votre lettre d'approbation.
+                    </div>
+                <?php endif; ?>
                 <div class="row tab-content">
                     <div id="list-view" class="tab-pane fade active show col-lg-12">
                         <div class="card">
