@@ -82,7 +82,7 @@
                                                             </td>
                                                             <td><?= $list['date_ver_rect']; ?></td>
                                                             <td>
-                                                                <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>" class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
+                                                                <a href="view-ma-demande.php?id=<?= $list['id_ut_bour_fk']; ?>" class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                             </td>
                                                         </tr>
 

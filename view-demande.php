@@ -43,6 +43,7 @@
                                                 <th>Grade</th>
                                                 <th>Email</th>
                                                 <th>Date demande</th>
+                                                <th>Contrat</th>
                                                 <th>Doyen</th>
                                                 <th>SGR</th>
                                                 <th>SGAC</th>
@@ -71,6 +72,7 @@
                                                                     href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a>
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
+                                                            <td><a href="<?= $list['chemin_contrat']; ?>" target="_blank"><i class="fa fa-file"></i></a></td>
                                                             <td
                                                                 class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -128,6 +130,7 @@
                                                                     href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a>
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
+                                                            <td><a href="<?= $list['chemin_contrat']; ?>" target="_blank"><i class="fa fa-file"></i></a></td>
                                                             <td
                                                                 class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -184,6 +187,7 @@
                                                                     href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a>
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
+                                                            <td><a href="<?= $list['chemin_contrat']; ?>" target="_blank"><i class="fa fa-file"></i></a></td>
                                                             <td
                                                                 class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -240,6 +244,7 @@
                                                                     href="javascript:void(0);"><strong><?= $list['email']; ?></strong></a>
                                                             </td>
                                                             <td><?= $list['date_enre_bourse']; ?></td>
+                                                            <td><a href="<?= $list['chemin_contrat']; ?>" target="_blank"><i class="fa fa-file"></i></a></td>
                                                             <td
                                                                 class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                                 <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
