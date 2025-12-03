@@ -62,24 +62,26 @@
                                             if (mysqli_num_rows($demande_run) > 0) {
                                                 foreach ($demande_run as $list) {
                                                     ?>
-                                                    <tr>
-                                                        <td colspan="9" class="text-center">
-                                                            <?php
-                                                            $depart = $list['date_depart']; // format "Y-m-d H:i:s"
-                                                            ?>
-                                                            <span id="countdown"></span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="9">
-                                                            <?php
-                                                                // $aller  = $list['date_depart'];
-                                                                $aller = date('Y-m-d', strtotime($list['date_depart']));
-                                                                $retour = date('Y-m-d', strtotime($list['date_retour'])); // ex: 2025-12-20 18:30:00
-                                                            ?>
-                                                            <span id="countdown-retour"></span>
-                                                        </td>
-                                                    </tr>
+                                                    <?php if ($demande_validee): ?>
+                                                        <tr>
+                                                            <td colspan="9" class="text-center">
+                                                                <?php
+                                                                $depart = $list['date_depart']; // format "Y-m-d H:i:s"
+                                                                ?>
+                                                                <span id="countdown"></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="9" class="text-center">
+                                                                <?php
+                                                                    // $aller  = $list['date_depart'];
+                                                                    $aller = date('Y-m-d', strtotime($list['date_depart']));
+                                                                    $retour = date('Y-m-d', strtotime($list['date_retour'])); // ex: 2025-12-20 18:30:00
+                                                                ?>
+                                                                <span id="countdown-retour" class="fw-bold"></span>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
                                                     <tr>
                                                         <td
                                                             class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
