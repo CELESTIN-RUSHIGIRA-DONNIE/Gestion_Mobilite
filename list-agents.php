@@ -65,7 +65,7 @@
                                                             <?php echo '<img class="rounded-circle" width="35" src="uploads/' . $list['photo'] . '" alt="User Image">' ?>
                                                         </td>
                                                         <td><?= $list['matricule'] ?></td>
-                                                        <td><?= $list['nom'] ?></td>
+                                                        <td><?= $list['nom'] .' '. $list['postnom'].' '. $list['prenom'] ?></td>
                                                         <td><?= $list['email'] ?></td>
                                                         <td><?= $list['role'] ?></td>
                                                         <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
