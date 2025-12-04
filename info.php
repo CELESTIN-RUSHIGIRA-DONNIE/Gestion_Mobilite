@@ -37,7 +37,7 @@
                             <div class="card-header">
                                 <h4 class="card-title"><strong>Ma demande</strong></h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="demande_table">
                                 <div class="table-responsive">
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
@@ -104,12 +104,9 @@
                                                         </td>
                                                         <td><?= $list['date_ver_rect']; ?></td>
                                                         <td>
-                                                            <a href="view-ma-demande.php?id=<?= $list['id']; ?>"
-                                                                class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
-
-                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                                    class="la la-trash-o"></i></a>
+                                                            <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['id']; ?>"><i class="la la-trash-o"></i></button>
                                                         </td>
+                                                        
                                                     </tr>
                                                     <?php
                                                 }

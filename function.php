@@ -489,4 +489,32 @@ else if (isset($_POST['edit_agents'])) {
         exit;
     }
 }
+
+else if(isset($_POST['delete_demande_btn']))
+{
+    $demande_id = mysqli_real_escape_string($con, $_POST['demande_id']);
+
+    $demande_query ="SELECT * FROM demande_bourse WHERE id='$demande_id'";
+    $demande_query_run = mysqli_query($con, $demande_query);
+    $demande_data = mysqli_fetch_array($demande_query_run);
+    $image = $demande_data['photo'];
+
+    $delete_query = "DELETE FROM demande_bourse WHERE id='$demande_id' ";
+    $delete_query_run = mysqli_query($con, $delete_query);
+    
+    if($delete_query_run)
+    {
+        if(file_exists("uploads/".$image))
+        {
+            unlink("uploads/".$image);
+        }
+        //redirect("category.php", "category deleted");
+        echo 200;
+    }
+    else
+    {
+        //redirect("category.php", "Category not delete");
+        echo 500;
+    }
+}
 ?>
