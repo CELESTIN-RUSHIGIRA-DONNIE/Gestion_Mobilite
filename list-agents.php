@@ -37,7 +37,7 @@
                                     <a href="add-agent.php" class="btn btn-primary">+ Ajouter Agents</a>
                                 <?php endif; ?>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="agents_table">
                                 <div class="table-responsive">
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
@@ -71,7 +71,7 @@
                                                         <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
                                                         <td>
                                                             <a href="edit-agent.php?id=<?= $list['id'] ?>"class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                                                            <button type="button" class="btn btn-danger btn-sm delete_agents_btn" value="<?= $list['id']; ?>"><i class="la la-trash-o"></i></button>
                                                         </td>
                                                         <?php endif; ?>
                                                     </tr>
@@ -165,4 +165,47 @@
     </div>
 </div>
 
-<?php include("inc/footer.php"); ?>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+ 
+<!-- Required vendors -->
+<script src="assets/vendor/global/global.min.js"></script>
+<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="assets/js/custom.min.js"></script>
+<script src="assets/js/dlabnav-init.js"></script>
+
+<!-- Svganimation scripts -->
+<script src="assets/vendor/svganimation/vivus.min.js"></script>
+<script src="assets/vendor/svganimation/svg.animation.js"></script>
+<script src="assets/js/styleSwitcher.js"></script>
+
+<!-- Toastr -->
+<script src="assets/vendor/toastr/js/toastr.min.js"></script>
+
+<!-- All init script -->
+<script src="assets/js/plugins-init/toastr-init.js"></script>
+<script>
+    <?php if (!empty($toast)): ?>
+        toastr.<?php echo $toast['type']; ?>("<?php echo addslashes($toast['message']); ?>");
+    <?php endif; ?>
+</script>
+
+<!-- Datatable -->
+<script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins-init/datatables.init.js"></script>
+
+<script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+
+</html>

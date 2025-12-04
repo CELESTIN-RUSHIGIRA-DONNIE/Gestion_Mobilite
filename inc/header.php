@@ -21,7 +21,6 @@ $id_faculte = $_SESSION['auth_user']['id_faculte'];
 $role = $_SESSION['auth_user']['role'];
 $roles_autorises = ['SGR', 'DOYEN', 'SGAC', 'RECTORAT'];
 
-
 $sql = "SELECT COUNT(*) AS total FROM demande_bourse WHERE id_ut_bour_fk = $user_id AND status = 'en attente'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);

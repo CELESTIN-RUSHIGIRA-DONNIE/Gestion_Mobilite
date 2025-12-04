@@ -106,7 +106,6 @@
                                                         <td>
                                                             <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['id']; ?>"><i class="la la-trash-o"></i></button>
                                                         </td>
-                                                        
                                                     </tr>
                                                     <?php
                                                 }

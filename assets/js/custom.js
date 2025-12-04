@@ -1,13 +1,13 @@
 $(document).ready(function() {
  
-    $('.delete_product_btn').click(function(e){
+    $('.delete_agents_btn').click(function(e){
         e.preventDefault();   
         var id = $(this).val();
         //alert(id);
 
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover!",
+            title: "Voulez-vous supprimer cet agent?",
+            text: "Une fois supprimé, vous ne pourrez pas le récupérer !",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -18,18 +18,18 @@ $(document).ready(function() {
                     method: "POST",
                     url: "function.php",
                     data: {
-                        'product_id':id,
-                        'delete_product_btn':true
+                        'agent_id':id,
+                        'delete_agents_btn':true
                     },
                     success: function(response){
                         if(response == 200)
                         {
-                            swal("Success", "produit deleted", "success");
-                            $("#products_table").load(location.href + " #products_table");
+                            swal("Success", "Agent supprimé avec succès", "success");
+                            $("#agents_table").load(location.href + " #agents_table");
                         }
                         else if(response == 500)
                         {
-                            swal("error", "produit not deleted", "error");
+                            swal("error", "Agent non supprimé", "error");
                         }
                     }
                 });

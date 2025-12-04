@@ -517,4 +517,30 @@ else if(isset($_POST['delete_demande_btn']))
         echo 500;
     }
 }
+
+else if(isset($_POST['delete_agents_btn']))
+{
+    $agent_id = mysqli_real_escape_string($con, $_POST['agent_id']);
+
+    $agent_query ="SELECT * FROM agents WHERE id='$agent_id'";
+    $agent_query_run = mysqli_query($con, $agent_query);
+    $agent_data = mysqli_fetch_array($agent_query_run);
+    $image = $agent_data['photo'];
+
+    $delete_query = "DELETE FROM agents WHERE id='$agent_id'";
+    $delete_query_run = mysqli_query($con, $delete_query);
+    
+    if($delete_query_run)
+    {
+        if(file_exists("uploads/".$image))
+        {
+            unlink("uploads/".$image);
+        }
+        echo 200;
+    }
+    else
+    {
+        echo 500;
+    }
+}
 ?>
