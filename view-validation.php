@@ -96,7 +96,7 @@
                                                 } else {
                                                     ?>
                                                     <tr>
-                                                        <td colspan="7" class="bg-danger text-white text-center">Not record
+                                                        <td colspan="10" class="bg-danger text-center">Not record
                                                             found</td>
                                                     </tr>
                                                     <?php

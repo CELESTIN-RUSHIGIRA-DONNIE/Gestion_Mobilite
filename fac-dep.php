@@ -21,10 +21,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills mb-3">
-                    <li class="nav-item"><a href="#list-view" data-toggle="tab"
-                            class="nav-link btn-primary mr-1 show active">Faculté</a></li>
-                    <li class="nav-item"><a href="#grid-view" data-toggle="tab"
-                            class="nav-link btn-primary">Département</a></li>
+                    <li class="nav-item"><a href="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">Faculté</a></li>
+                    <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Département</a></li>
                 </ul>
             </div>
             <div class="col-lg-12">
@@ -210,7 +208,7 @@
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
                                                                     class="la la-eye"></i></a>
-                                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
+                                                            <a href="edit-student.php?id=<?= $list['id'] ?>" class="btn btn-sm btn-primary"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
                                                                     class="la la-trash-o"></i></a>

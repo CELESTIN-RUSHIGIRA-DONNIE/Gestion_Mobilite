@@ -1,32 +1,15 @@
-<!--**********************************
-            Footer start
-        ***********************************-->
-<div class="footer">
-    <div class="copyright">
-        <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+        </div>
     </div>
-</div>
-<!--**********************************
-            Footer end
-        ***********************************-->
-
-<!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-<!--**********************************
-           Support ticket button end
-        ***********************************-->
-
 
 </div>
-<!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-<!--**********************************
-        Scripts
-    ***********************************-->
+
+
+ 
 <!-- Required vendors -->
 <script src="assets/vendor/global/global.min.js"></script>
 <script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
@@ -60,6 +43,10 @@
 <!-- Datatable -->
 <script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="assets/js/plugins-init/datatables.init.js"></script>
+
+<script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
 
 <script>
     // date de départ envoyée par PHP
@@ -121,12 +108,14 @@
     // 1) Avant la date de départ : rien
     if (now.getTime() < dateDepart.getTime()) {
       span.innerHTML = "";
+      span.className = "fw-bold";
       return;
     }
 
     // 2) Après la date de retour : terminé
     if (now.getTime() > dateRetour.getTime()) {
       span.innerHTML = "Séjour terminé";
+      span.className = "fw-bold text-danger";
       return;
     }
 
@@ -134,7 +123,8 @@
     const diff = dateRetour.getTime() - now.getTime();
     const temps = formatTime(diff);
     
-    span.innerHTML = `Il reste ${temps.jours}j ${temps.heures}h ${temps.minutes}m ${temps.secondes}s de séjour`;
+    span.innerHTML = `Il vous reste ${temps.jours}j ${temps.heures}h ${temps.minutes}m ${temps.secondes}s de votre séjour`;
+    span.className = "fw-bold text-success";
   }, 1000);
 </script>
 

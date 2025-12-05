@@ -22,21 +22,22 @@
                     <div class="profile-head">
                         <div class="photo-content">
                             <div class="cover-photo"></div>
-
                         </div>
                         <div class="profile-info">
-
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="profile-photo">
-                                        <img src="uploads/<?= htmlspecialchars($_SESSION['auth_user']['photo']) ?>" class="img-fluid rounded-circle" alt="">
+                                        <img src="uploads/<?= htmlspecialchars($_SESSION['auth_user']['photo']) ?>"
+                                            class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-9 col-12">
                                     <div class="row">
                                         <div class="col-xl-4 col-sm-6 border-right-1">
                                             <div class="profile-name">
-                                                <h4 class="text-primary mb-0"><?= $_SESSION['auth_user']['nom'] . ' ' . $_SESSION['auth_user']['postnom'] .' '. $_SESSION['auth_user']['prenom'] ?></h4>
+                                                <h4 class="text-primary mb-0">
+                                                    <?= $_SESSION['auth_user']['nom'] . ' ' . $_SESSION['auth_user']['postnom'] . ' ' . $_SESSION['auth_user']['prenom'] ?>
+                                                </h4>
                                                 <p><?= $_SESSION['auth_user']['role'] ?></p>
                                             </div>
                                         </div>
@@ -46,12 +47,6 @@
                                                 <p>Email</p>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-xl-4 col-sm-4 prf-col">
-                                                    <div class="profile-call">
-                                                        <h4 class="text-muted">(+1) 321-837-1030</h4>
-                                                        <p>Phone No.</p>
-                                                    </div>
-                                                </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +85,8 @@
                             <h4>Darwin Creative Agency Theme</h4>
                             <p>A small river named Duden flows by their place and supplies it with the necessary
                                 regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-                                your mouth.</p>
+                                your mouth.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -108,8 +104,7 @@
                                             Me</a>
                                     </li>
                                     <li class="nav-item"><a href="#profile-settings" data-toggle="tab"
-                                            class="nav-link">Setting</a>
-                                    </li>
+                                            class="nav-link">Setting</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div id="my-posts" class="tab-pane fade active show">
@@ -139,21 +134,6 @@
                                                     he had recently cut out of an illustrated magazine and housed
                                                     in a nice, gilded frame.</p>
                                             </div>
-                                        </div>
-                                        <div class="profile-skills pt-2 border-bottom-1 pb-2">
-                                            <h4 class="text-primary mb-4">Skills</h4>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Admin</a>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Dashboard</a>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Photoshop</a>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Bootstrap</a>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Responsive</a>
-                                            <a href="javascript:void()"
-                                                class="btn btn-outline-dark btn-rounded px-4 my-3 my-sm-0 mr-2 mb-1 m-b-10">Crypto</a>
                                         </div>
                                         <div class="profile-lang pt-5 border-bottom-1 pb-5">
                                             <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()"
@@ -202,9 +182,7 @@
                                                 <div class="col-3">
                                                     <h5 class="f-w-500">Location <span class="pull-right">:</span></h5>
                                                 </div>
-                                                <div class="col-9"><span>Rosemont Avenue Melbourne,
-                                                        Florida</span>
-                                                </div>
+                                                <div class="col-9"><span>Rosemont Avenue Melbourne,Florida</span></div>
                                             </div>
                                             <div class="row mb-4">
                                                 <div class="col-3">
@@ -219,59 +197,21 @@
                                     <div id="profile-settings" class="tab-pane fade">
                                         <div class="pt-3">
                                             <div class="settings-form">
-                                                <h4 class="text-primary">Account Setting</h4>
-                                                <form>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>Email</label>
-                                                            <input type="email" placeholder="Email"
-                                                                class="form-control">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>Password</label>
-                                                            <input type="password" placeholder="Password"
-                                                                class="form-control">
-                                                        </div>
-                                                    </div>
+                                                <h3 class="text-primary">Parametre de compte</h3>
+
+                                                <form action="function.php" method="post">
                                                     <div class="form-group">
-                                                        <label>Address</label>
-                                                        <input type="text" placeholder="1234 Main St"
-                                                            class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address 2</label>
-                                                        <input type="text" placeholder="Apartment, studio, or floor"
-                                                            class="form-control">
+                                                        <input type="password" name="ancien_motdepasse" placeholder="Ancien Mot de passe" class="form-control">
                                                     </div>
                                                     <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>City</label>
-                                                            <input type="text" class="form-control">
+                                                        <div class="form-group col-md-6"> 
+                                                            <input type="password" name="nouveau_motdepasse" placeholder="Nouveau Mot de passe" class="form-control">
                                                         </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label>State</label>
-                                                            <select class="form-control" id="inputState">
-                                                                <option selected="">Choose...</option>
-                                                                <option>Option 1</option>
-                                                                <option>Option 2</option>
-                                                                <option>Option 3</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-2">
-                                                            <label>Zip</label>
-                                                            <input type="text" class="form-control">
+                                                        <div class="form-group col-md-6">          
+                                                            <input type="password" name="confirmer_nouveau_motdepasse" placeholder="Confirmer le nouveau mot de passe" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="gridCheck">
-                                                            <label class="custom-control-label" for="gridCheck"> Check
-                                                                me out</label>
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn btn-primary" type="submit">Sign
-                                                        in</button>
+                                                    <button class="btn btn-primary" type="submit" name="changer_mot_de_passe">Valider</button>
                                                 </form>
                                             </div>
                                         </div>

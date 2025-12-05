@@ -543,4 +543,57 @@ else if(isset($_POST['delete_agents_btn']))
         echo 500;
     }
 }
+
+
+if (isset($_POST['changer_mot_de_passe'])) {
+
+    $agent_id = (int) $_SESSION['auth_user']['id'];
+    $old_password = $_POST['ancien_motdepasse'] ?? '';
+    $new_password = $_POST['nouveau_motdepasse'] ?? '';
+    $new_password_confirm = $_POST['confirmer_nouveau_motdepasse'] ?? '';
+
+    // 1. Vérifier que les deux nouveaux mots de passe sont identiques
+    if ($new_password !== $new_password_confirm) {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Les deux nouveaux mots de passe ne correspondent pas.'];
+        header("Location: view-profile.php");
+        exit;
+    }
+
+    // 2. Récupérer le mot de passe actuel en base
+    $stmt = $con->prepare("SELECT password FROM agents WHERE id = ?");
+    $stmt->bind_param('i', $agent_id);
+    $stmt->execute();
+    $stmt->bind_result($password_hash_db);
+    if (!$stmt->fetch()) {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Agent introuvable.'];
+        header("Location: view-profile.php");
+        exit;
+    }
+    $stmt->close();
+
+    // 3. Vérifier l'ancien mot de passe
+    if (!password_verify($old_password, $password_hash_db)) {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Ancien mot de passe incorrect.'];
+        header("Location: view-profile.php");
+        exit;
+
+    }
+
+    // 4. Hacher le nouveau mot de passe
+    $new_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+    // 5. Mettre à jour en base
+    $stmt = $con->prepare("UPDATE agents SET password = ? WHERE id = ?");
+    $stmt->bind_param('si', $new_hash, $agent_id);
+    if ($stmt->execute()) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Mot de passe modifié avec succès.'];
+        header("Location: view-profile.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la mise à jour.'];
+        header("Location: view-profile.php");
+        exit;
+    }
+}
+
 ?>
