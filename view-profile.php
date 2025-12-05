@@ -83,10 +83,6 @@
                                 class="pull-right f-s-16">More</a>
                             <img src="assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
                             <h4>Darwin Creative Agency Theme</h4>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-                                your mouth.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -165,9 +161,10 @@
                                             <div class="row mb-4">
                                                 <?php
                                                 $id_use = $_SESSION['auth_user']['id'];
-                                                $sql = "SELECT f.name 
+                                                $sql = "SELECT f.name, d.nom_departement 
                                                         FROM agents a
                                                         INNER JOIN faculte f ON a.id_faculte = f.id
+                                                        INNER JOIN departement d ON a.id_departement = d.id
                                                         WHERE a.id = ?";
                                                 $stmt = mysqli_prepare($con, $sql);
                                                 mysqli_stmt_bind_param($stmt, "i", $id_use);
@@ -179,7 +176,11 @@
                                                     <div class="col-3">
                                                         <h5 class="f-w-500">Faculté <span class="pull-right">:</span></h5>
                                                     </div>
-                                                    <div class="col-9"><span><?= $row['name'] ?></span></div>
+                                                    <div class="col-9"><span><?= $row['name'] ?></span></div><br><br>
+                                                    <div class="col-3 ">
+                                                        <h5 class="f-w-500">Département <span class="pull-right">:</span></h5>
+                                                    </div>
+                                                    <div class="col-9"><span><?= $row['nom_departement'] ?></span></div>
                                                     <?php
                                                 }
 
@@ -189,56 +190,71 @@
                                     </div>
                                     <div id="about-me" class="tab-pane fade">
                                         <div class="pt-3">
-                                            <div class="settings-form">
-                                                <h3 class="text-primary">Modifer Le Profile</h3>
-                                                <form action="function.php" method="post">
-                                                    <div class="form-group">
-                                                        <input type="text" name="matricule" placeholder="21IGGJ119426" class="form-control" disabled>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="nom" placeholder="nom"
-                                                                class="form-control">
+                                            <?php
+                                                $sql = "SELECT * FROM agents WHERE id = ?";
+                                                $stmt = mysqli_prepare($con, $sql);
+                                                mysqli_stmt_bind_param($stmt, "i", $user_id);
+                                                mysqli_stmt_execute($stmt);
+                                                $result = mysqli_stmt_get_result($stmt);
+                                                $user = mysqli_fetch_assoc($result);
+                                                ?>
+                                                <div class="settings-form">
+                                                    <h3 class="text-primary">Modifer Le Profile</h3>
+                                                    <form action="function.php" method="post">
+                                                        <div class="form-group">
+                                                            <input type="text" name="matricule" value="<?= $user['matricule']; ?>"
+                                                                class="form-control" disabled>
                                                         </div>
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="postnom" placeholder="postnom"
-                                                                class="form-control">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="nom" value="<?= $user['nom']; ?>"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="postnom" value="<?= $user['postnom']; ?>"
+                                                                    class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="prenom" placeholder="prenom"
-                                                                class="form-control">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="prenom" value="<?= $user['prenom']; ?>"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="Grade" value="<?= $user['Grade']; ?>"
+                                                                    class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="Grade" placeholder="Grade"
-                                                                class="form-control">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <input type="date" name="date_n" value="<?= $user['date_nais']; ?>"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="Genre" value="<?= $user['sexe']; ?>"
+                                                                    class="form-control">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <input type="date" name="date_n"
-                                                                placeholder="date de naissance" class="form-control">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="adress" value="<?= $user['adress']; ?>"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input type="text" name="telephone" value="<?= $user['telephone']; ?>"
+                                                                    class="form-control">
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group col-md-6">
-                                                            <input type="Genre" name="Grade" placeholder="Grade"
-                                                                class="form-control">
+                                                        <div class="post-input">
+                                                            <textarea name="textarea" id="textarea" cols="30" rows="5"
+                                                                class="form-control bg-transparent"
+                                                                placeholder="Entrez votre Bios"></textarea>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="adress" placeholder="adresse"
-                                                                class="form-control">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <input type="text" name="telephone" placeholder="telephone"
-                                                                class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn btn-primary" type="submit"
-                                                        name="changer_mot_de_passe">Valider</button>
-                                                </form>
-                                            </div>
+                                                        <button class="btn btn-primary" type="submit" name="modifier-profile">Modifier</button>
+                                                    </form>
+                                                </div>
+                                                <?php
+                                            ?>
                                         </div>
                                     </div>
                                     <div id="profile-settings" class="tab-pane fade">

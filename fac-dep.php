@@ -21,8 +21,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills mb-3">
-                    <li class="nav-item"><a href="#list-view" data-toggle="tab" class="nav-link btn-primary mr-1 show active">Faculté</a></li>
-                    <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Département</a></li>
+                    <li class="nav-item"><a href="#list-view" data-toggle="tab"
+                            class="nav-link btn-primary mr-1 show active">Faculté</a></li>
+                    <li class="nav-item"><a href="#grid-view" data-toggle="tab"
+                            class="nav-link btn-primary">Département</a></li>
                 </ul>
             </div>
             <div class="col-lg-12">
@@ -32,7 +34,8 @@
                             <div class="card-header">
                                 <h4 class="card-title">Liste de Faculté </h4>
                                 <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">+ Ajouter Faculté</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#basicModal">+ Ajouter Faculté</button>
                                 <?php endif; ?>
                             </div>
                             <div class="modal fade" id="basicModal">
@@ -54,7 +57,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label class="control-label">Designation</label>
-                                                        <input class="form-control form-white" placeholder="Entrez designation" type="text"
+                                                        <input class="form-control form-white"
+                                                            placeholder="Entrez designation" type="text"
                                                             name="designation" required>
                                                     </div>
                                                 </div>
@@ -122,7 +126,8 @@
                             <div class="card-header">
                                 <h4 class="card-title">Departement</h4>
                                 <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal2">+ Ajouter Departement</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#basicModal2">+ Ajouter Departement</button>
                                 <?php endif; ?>
                             </div>
                             <div class="modal fade" id="basicModal2">
@@ -157,7 +162,8 @@
                                                                 foreach ($faculte_run as $list_faculte) {
                                                                     ?>
                                                                     <option value="<?= $list_faculte['id']; ?>">
-                                                                        <?= $list_faculte['name']; ?></option>
+                                                                        <?= $list_faculte['name']; ?>
+                                                                    </option>
                                                                     <?php
                                                                 }
                                                                 ?>
@@ -165,9 +171,10 @@
                                                             <?php
                                                         } else {
                                                             ?>
-                                                                <select class="form-control form-white">
-                                                                    <option value="" class="text-danger">Aucune faculté disponible</option>
-                                                                </select>
+                                                            <select class="form-control form-white">
+                                                                <option value="" class="text-danger">Aucune faculté
+                                                                    disponible</option>
+                                                            </select>
                                                             <?php
                                                         }
                                                         ?>
@@ -175,7 +182,67 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" name="add_departement" class="btn btn-primary">Enregistrer le Departement</button>
+                                                <button type="submit" name="add_departement"
+                                                    class="btn btn-primary">Enregistrer le Departement</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="ModaleditDepartement">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center"><strong>Modifier le Departement</strong>
+                                            </h5>
+                                            <button type="button" class="close"
+                                                data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="function.php" method="POST">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="control-label">Nom Departement</label>
+                                                        <input class="form-control form-white" placeholder="Entrez nom"
+                                                            type="text" name="name" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="control-label">Faculté ID</label>
+                                                        <?php
+                                                        $faculte = "SELECT * FROM faculte";
+                                                        $faculte_run = mysqli_query($con, $faculte);
+
+                                                        if (mysqli_num_rows($faculte_run) > 0) {
+                                                            ?>
+                                                            <select class="form-control form-white"
+                                                                data-placeholder="Choisis le faculté..." name="id_faculte">
+                                                                <?php
+                                                                foreach ($faculte_run as $list_faculte) {
+                                                                    ?>
+                                                                    <option value="<?= $list_faculte['id']; ?>">
+                                                                        <?= $list_faculte['name']; ?>
+                                                                    </option>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <select class="form-control form-white">
+                                                                <option value="" class="text-danger">Aucune faculté
+                                                                    disponible</option>
+                                                            </select>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" name="add_departement"
+                                                    class="btn btn-primary">Modifier le Departement</button>
                                             </div>
                                         </form>
                                     </div>
@@ -208,10 +275,10 @@
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
                                                                     class="la la-eye"></i></a>
-                                                            <a href="edit-student.php?id=<?= $list['id'] ?>" class="btn btn-sm btn-primary"><i
-                                                                    class="la la-pencil"></i></a>
-                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                                    class="la la-trash-o"></i></a>
+                                                            <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                                                <button type="button" class="btn btn-primary btn-sm" data-id="<?= $list['id']; ?>" data-toggle="modal" data-target="#ModaleditDepartement"><i class="la la-pencil"></i></button>
+                                                            <?php endif; ?>
+                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php
