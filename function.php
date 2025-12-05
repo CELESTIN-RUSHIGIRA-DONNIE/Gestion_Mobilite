@@ -237,7 +237,11 @@ else if (isset($_POST['login'])) {
             $nom = $userdata['nom'];
             $postnom = $userdata['postnom'];
             $prenom = $userdata['prenom'];
+            $matricule = $userdata['matricule'];
             $email = $userdata['email'];
+            $date_nais = $userdata['date_nais'];
+            $telephone = $userdata['telephone'];
+            $adress = $userdata['adress'];
             $role = $userdata['role'];
             $image = $userdata['photo'];
             $id_faculte = $userdata['id_faculte'];
@@ -247,7 +251,11 @@ else if (isset($_POST['login'])) {
                 'nom' => $nom,
                 'postnom' => $postnom,
                 'prenom' => $prenom,
+                'matricule'=> $matricule,
                 'email' => $email,
+                'date_nais'=> $date_nais,
+                'telephone'=> $telephone,
+                'adress'=> $adress,
                 'photo' => $image,
                 'role' => $role,
                 'id_faculte' => $id_faculte
