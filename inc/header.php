@@ -9,7 +9,7 @@ if (isset($_SESSION['toastr'])) {
 }
 
 if (!isset($_SESSION['auth_user'])) {
-    $_SESSION['message'] = "Connectez-vous d'abord d'abord.";
+    $_SESSION['message'] = "Connectez-vous d'abord !";
     $_SESSION["msg_type"] = "warning";
     header("Location: login.php");
     exit(0);

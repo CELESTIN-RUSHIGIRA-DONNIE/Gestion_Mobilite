@@ -604,4 +604,40 @@ if (isset($_POST['changer_mot_de_passe'])) {
     }
 }
 
+else if(isset($_POST["modifier_faculte"])){
+    $faculte_id = $_POST['faculte_id'];
+    $name = mysqli_real_escape_string($con, $_POST['nom_faculte']);
+    $designation = mysqli_real_escape_string($con, $_POST['designation']);
+
+    $query = "UPDATE faculte SET name='$name', designation='$designation' WHERE id='$faculte_id'";
+    $query_run = mysqli_query($con, $query);
+    
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Faculté modifiée avec succès.'];
+        header("Location: fac-dep.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la modification de la faculté.'];
+        header("Location: edit-fac.php?id=$faculte_id");
+        exit;
+    }
+}
+else if(isset($_POST["modifier_departement"])){
+    $departement_id = $_POST['departement_id'];
+    $name = mysqli_real_escape_string($con, $_POST['nom_departement']);
+    $id_faculte = mysqli_real_escape_string($con, $_POST['id_faculte']);
+
+    $query = "UPDATE departement SET nom_departement='$name', id_faculte='$id_faculte' WHERE id='$departement_id'";
+    $query_run = mysqli_query($con, $query);
+    
+    if ($query_run) {
+        $_SESSION['toastr'] = ['type' => 'success','message' => 'Département modifié avec succès.'];
+        header("Location: fac-dep.php");
+        exit;
+    } else {
+        $_SESSION['toastr'] = ['type' => 'error','message' => 'Erreur lors de la modification du département.'];
+        header("Location: edit-dep.php?id=$departement_id");
+        exit;
+    }
+}
 ?>

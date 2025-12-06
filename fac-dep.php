@@ -97,10 +97,10 @@
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
                                                                     class="la la-eye"></i></a>
-                                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                                    class="la la-pencil"></i></a>
-                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                                    class="la la-trash-o"></i></a>
+                                                            <?php if($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                                            <a href="edit-fac.php?id=<?= $list['id']; ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>                                                        
+                                                            <?php endif; ?>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -189,65 +189,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="ModaleditDepartement">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center"><strong>Modifier le Departement</strong>
-                                            </h5>
-                                            <button type="button" class="close"
-                                                data-dismiss="modal"><span>&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="function.php" method="POST">
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label class="control-label">Nom Departement</label>
-                                                        <input class="form-control form-white" placeholder="Entrez nom"
-                                                            type="text" name="name" required>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label class="control-label">Faculté ID</label>
-                                                        <?php
-                                                        $faculte = "SELECT * FROM faculte";
-                                                        $faculte_run = mysqli_query($con, $faculte);
-
-                                                        if (mysqli_num_rows($faculte_run) > 0) {
-                                                            ?>
-                                                            <select class="form-control form-white"
-                                                                data-placeholder="Choisis le faculté..." name="id_faculte">
-                                                                <?php
-                                                                foreach ($faculte_run as $list_faculte) {
-                                                                    ?>
-                                                                    <option value="<?= $list_faculte['id']; ?>">
-                                                                        <?= $list_faculte['name']; ?>
-                                                                    </option>
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                            </select>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                            <select class="form-control form-white">
-                                                                <option value="" class="text-danger">Aucune faculté
-                                                                    disponible</option>
-                                                            </select>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" name="add_departement"
-                                                    class="btn btn-primary">Modifier le Departement</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card-body">
                                 <div class="table-responsive recentOrderTable">
                                     <table id="example3" class="display" style="min-width: 845px">
@@ -261,7 +202,10 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $affiche_departement = "SELECT departement.*, faculte.* FROM departement
+
+                                            $affiche_departement = "SELECT departement.id AS departement_id,
+                                            departement.nom_departement, faculte.id
+                                             AS faculte_id,faculte.name FROM departement 
                                             INNER JOIN faculte ON departement.id_faculte = faculte.id";
                                             $affiche_departement_run = mysqli_query($con, $affiche_departement);
 
@@ -269,16 +213,16 @@
                                                 foreach ($affiche_departement_run as $list) {
                                                     ?>
                                                     <tr>
-                                                        <td><?= $list['id']; ?></td>
+                                                        <td><?= $list['departement_id']; ?></td>
                                                         <td><?= $list['name']; ?></td>
                                                         <td><?= $list['nom_departement']; ?></td>
                                                         <td>
                                                             <a href="edit-student.html" class="btn btn-sm btn-success"><i
                                                                     class="la la-eye"></i></a>
                                                             <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
-                                                                <button type="button" class="btn btn-primary btn-sm" data-id="<?= $list['id']; ?>" data-toggle="modal" data-target="#ModaleditDepartement"><i class="la la-pencil"></i></button>
+                                                                <a href="edit-dep.php?id=<?= $list['departement_id']; ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                                                             <?php endif; ?>
-                                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php
