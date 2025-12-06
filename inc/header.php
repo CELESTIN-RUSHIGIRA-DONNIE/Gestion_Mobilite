@@ -278,7 +278,6 @@ $demande_en_attente = ($row['total'] > 0);
                                 <li><a href="add-agent.php">Ajouter agents</a></li>
                             <?php endif; ?>
                             <li><a href="list-agents.php">Agents</a></li>
-                            <li><a href="edit-agent.html">Edit Agents</a></li>
                             <li><a href="about-agent.html">About Agents</a></li>
                         </ul>
                     </li>
@@ -288,9 +287,6 @@ $demande_en_attente = ($row['total'] > 0);
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="fac-dep.php">FAC et Departement</a></li>
-                            <li><a href="add-courses.html">Add Courses</a></li>
-                            <li><a href="edit-courses.html">Edit Courses</a></li>
-                            <li><a href="about-courses.html">About Courses</a></li>
                         </ul>
                     </li>
                     <?php if (!in_array($role, $roles_autorises)): ?>

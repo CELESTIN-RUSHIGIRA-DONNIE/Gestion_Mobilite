@@ -551,6 +551,21 @@ else if(isset($_POST['delete_agents_btn']))
         echo 500;
     }
 }
+else if(isset($_POST["delete_departement_btn"])){
+    $departement_id = mysqli_real_escape_string($con, $_POST['department_id']);
+
+    $delete_query = "DELETE FROM departement WHERE id='$departement_id'";
+    $delete_query_run = mysqli_query($con, $delete_query);
+    
+    if($delete_query_run)
+    {
+        echo 200;
+    }
+    else
+    {
+        echo 500;
+    }
+}
 
 
 if (isset($_POST['changer_mot_de_passe'])) {

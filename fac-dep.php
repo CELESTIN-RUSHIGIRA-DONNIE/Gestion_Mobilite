@@ -189,7 +189,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="departement_table">
                                 <div class="table-responsive recentOrderTable">
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
@@ -221,7 +221,7 @@
                                                                     class="la la-eye"></i></a>
                                                             <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
                                                                 <a href="edit-dep.php?id=<?= $list['departement_id']; ?>" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-                                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i class="la la-trash-o"></i></a>
+                                                                <button type="button" class="btn btn-danger btn-sm delete_departement_btn" value="<?= $list['departement_id']; ?>"><i class="la la-trash-o"></i></button>
                                                             <?php endif; ?>
                                                         </td>
                                                     </tr>
@@ -230,8 +230,7 @@
                                             } else {
                                                 ?>
                                                 <tr>
-                                                    <td colspan="4" class="bg-danger text-white">Pas de departement
-                                                        enregistré</td>
+                                                    <td colspan="4" class="bg-danger text-center text-danger">Pas de departement enregistré</td>
                                                 </tr>
                                                 <?php
                                             }
@@ -249,4 +248,46 @@
     </div>
 </div>
 
-<?php include("inc/footer.php"); ?>
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+ 
+<!-- Required vendors -->
+<script src="assets/vendor/global/global.min.js"></script>
+<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="assets/js/custom.min.js"></script>
+<script src="assets/js/dlabnav-init.js"></script>
+
+<!-- Svganimation scripts -->
+<script src="assets/vendor/svganimation/vivus.min.js"></script>
+<script src="assets/vendor/svganimation/svg.animation.js"></script>
+<script src="assets/js/styleSwitcher.js"></script>
+
+<!-- Toastr -->
+<script src="assets/vendor/toastr/js/toastr.min.js"></script>
+
+<!-- All init script -->
+<script src="assets/js/plugins-init/toastr-init.js"></script>
+<script>
+    <?php if (!empty($toast)): ?>
+        toastr.<?php echo $toast['type']; ?>("<?php echo addslashes($toast['message']); ?>");
+    <?php endif; ?>
+</script>
+
+<!-- Datatable -->
+<script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins-init/datatables.init.js"></script>
+
+<script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+
+</html>

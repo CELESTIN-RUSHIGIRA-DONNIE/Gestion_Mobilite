@@ -110,9 +110,8 @@
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right border py-0">
                                                         <div class="py-2">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item text-danger"
-                                                                href="javascript:void(0);">Delete</a>
+                                                            <a href="edit-agent.php?id=<?= $list['id'] ?>"class="dropdown-item">Modifier</a>
+                                                            <button type="button" class="dropdown-item text-danger delete_agents_btn" value="<?= $list['id']; ?>">Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -139,7 +138,7 @@
                                                         </li>
                                                     </ul>
                                                     <a class="btn btn-outline-primary btn-rounded mt-3 px-4"
-                                                        href="professor-profile.html">Read More</a>
+                                                        href="professor-profile.html">Plus de details</a>
                                                 </div>
                                             </div>
                                         </div>
