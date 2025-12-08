@@ -1,4 +1,15 @@
-<?php include("inc/header.php");?>
+<?php
+session_start();
+
+if (!isset($_SESSION['auth_user']['role']) || $_SESSION['auth_user']['role'] !== 'SGR') {
+    header('Location: index.php');
+    exit;
+}
+?>
+<?php 
+    include("inc/header.php");
+?>
+
 
         <div class="content-body">
             <!-- row -->
