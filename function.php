@@ -655,4 +655,20 @@ else if(isset($_POST["modifier_departement"])){
         exit;
     }
 }
+
+else if(isset($_POST["delete_demande_btn"])){
+    $demande_id = mysqli_real_escape_string($con, $_POST['demande_id']);
+
+    $delete_query = "DELETE FROM demande_bourse WHERE id='$demande_id'";
+    $delete_query_run = mysqli_query($con, $delete_query);
+    
+    if($delete_query_run)
+    {
+        echo 200;
+    }
+    else
+    {
+        echo 500;
+    }
+}
 ?>

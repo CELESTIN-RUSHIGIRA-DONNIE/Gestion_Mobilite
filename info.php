@@ -27,8 +27,7 @@
                     <div class="alert alert-success alert-dismissible alert-alt solid fade show">
                         <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i
                                     class="mdi mdi-close"></i></span></button>
-                        <strong>Félicitations!</strong> Votre demande de mobilité a été entièrement validée. Vous pouvez
-                        maintenant télécharger votre lettre d'approbation.
+                        <strong>Félicitations!</strong> Votre demande de mobilité a été entièrement validée.
                     </div>
                 <?php endif; ?>
                 <div class="row tab-content">
@@ -55,8 +54,8 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $demande = "SELECT agents.*, demande_Bourse.* FROM demande_Bourse
-                                                INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id WHERE agents.id=$user_id";
+                                            $demande = "SELECT agents.*, demande_Bourse.*, demande_bourse.id AS demande_id FROM demande_Bourse
+                                            INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id WHERE agents.id=$user_id";
                                             $demande_run = mysqli_query($con, $demande);
 
                                             if (mysqli_num_rows($demande_run) > 0) {
@@ -104,7 +103,7 @@
                                                         </td>
                                                         <td><?= $list['date_ver_rect']; ?></td>
                                                         <td>
-                                                            <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['id']; ?>"><i class="la la-trash-o"></i></button>
+                                                            <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['demande_id']; ?>"><i class="la la-trash-o"></i></button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -130,4 +129,22 @@
     </div>
 </div>
 
-<?php include("inc/footer.php"); ?>
+<!-- Required vendors -->
+<script src="assets/vendor/global/global.min.js"></script>
+<script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="assets/js/custom.min.js"></script>
+<script src="assets/js/dlabnav-init.js"></script>
+
+<!-- Svganimation scripts -->
+<script src="assets/vendor/svganimation/vivus.min.js"></script>
+
+<!-- Datatable -->
+<script src="assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/plugins-init/datatables.init.js"></script>
+
+<script src="assets/js/sweetalert.min.js"></script>
+<script src="assets/js/custom.js"></script>
+
+</body>
+
+</html>

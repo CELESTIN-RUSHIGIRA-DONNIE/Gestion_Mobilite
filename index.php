@@ -101,100 +101,63 @@
             <div class="col-xl-12 col-xxl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">New Student List</h4>
-                        <a href="add-agent.php" class="btn btn-primary">+ Ajouter agent</a>
+                        <h4 class="card-title"><strong>Liste de Agents</strong></h4>
+                        <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                            <a href="add-agent.php" class="btn btn-primary">+ Ajouter Agents</a>
+                        <?php endif; ?>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive recentOrderTable">
-                            <table class="table verticle-middle table-responsive-md">
+                    <div class="card-body" id="agents_table">
+                        <div class="table-responsive">
+                            <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Assigned Professor</th>
-                                        <th scope="col">Date Of Admit</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Subject</th>
-                                        <th scope="col">Fees</th>
-                                        <th scope="col">Edit</th>
+                                        <th>Image</th>
+                                        <th>Matricule</th>
+                                        <th>Noms</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                            <th>Action</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>Jack Ronan</td>
-                                        <td>Airi Satou</td>
-                                        <td>01 August 2020</td>
-                                        <td><span class="badge badge-rounded badge-primary">Checkin</span></td>
-                                        <td>Commerce</td>
-                                        <td>120$</td>
-                                        <td>
-                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                    class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                    class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>02 </td>
-                                        <td>Jimmy Morris</td>
-                                        <td>Angelica Ramos</td>
-                                        <td>31 July 2020</td>
-                                        <td><span class="badge badge-rounded badge-warning">Panding</span></td>
-                                        <td>Mechanical</td>
-                                        <td>120$</td>
-                                        <td>
-                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                    class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                    class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>03 </td>
-                                        <td>Nashid Martines</td>
-                                        <td>Ashton Cox</td>
-                                        <td>30 July 2020</td>
-                                        <td><span class="badge badge-rounded badge-danger">Canceled</span></td>
-                                        <td>Science</td>
-                                        <td>520$</td>
-                                        <td>
-                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                    class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                    class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>Roman Aurora</td>
-                                        <td>Cara Stevens</td>
-                                        <td>29 July 2020</td>
-                                        <td><span class="badge badge-rounded badge-success">Checkin</span></td>
-                                        <td>Arts</td>
-                                        <td>220$</td>
-                                        <td>
-                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                    class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                    class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>05</td>
-                                        <td>Samantha</td>
-                                        <td>Bruno Nash </td>
-                                        <td>28 July 2020</td>
-                                        <td><span class="badge badge-rounded badge-success">Checkin</span></td>
-                                        <td>Maths</td>
-                                        <td>130$</td>
-                                        <td>
-                                            <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                    class="la la-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                    class="la la-trash-o"></i></a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $affiche_agents = "SELECT * FROM agents";
+                                    $agents_run = mysqli_query($con, $affiche_agents);
+
+                                    if (mysqli_num_rows($agents_run) > 0) {
+                                        foreach ($agents_run as $list) {
+                                            ?>
+                                            <tr>
+                                                <td class="py-1">
+                                                    <?php echo '<img class="rounded-circle" width="35" src="uploads/' . $list['photo'] . '" alt="User Image">' ?>
+                                                </td>
+                                                <td><?= $list['matricule'] ?></td>
+                                                <td><?= $list['nom'] . ' ' . $list['postnom'] . ' ' . $list['prenom'] ?></td>
+                                                <td><?= $list['email'] ?></td>
+                                                <td><?= $list['role'] ?></td>
+                                                <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
+                                                    <td>
+                                                        <a href="edit-agent.php?id=<?= $list['id'] ?>"
+                                                            class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+                                                        <button type="button" class="btn btn-danger btn-sm delete_agents_btn"
+                                                            value="<?= $list['id']; ?>"><i class="la la-trash-o"></i></button>
+                                                    </td>
+                                                <?php endif; ?>
+                                            </tr>
+
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <tr>
+                                            <td colspan="5" class="bg-danger text-white text-center">Pas d'agent enregistré
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

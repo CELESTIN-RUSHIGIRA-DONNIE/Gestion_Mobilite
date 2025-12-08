@@ -330,13 +330,10 @@ $demande_en_attente = ($row['total'] > 0);
                             <li><a href="staff-profile.html">Staff Profile</a></li>
                         </ul>
                     </li>
-
+                    <li class="nav-label">ROLE : <?php echo $_SESSION['auth_user']['role'] ?></li>
                 </ul>
             </div>
         </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
-
-
-        

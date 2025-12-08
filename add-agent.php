@@ -113,6 +113,8 @@ if (!isset($_SESSION['auth_user']['role']) || $_SESSION['auth_user']['role'] !==
                                                     <option>DOYEN</option>
                                                     <option>SGAC</option>
                                                     <option>RECTORAT</option>
+                                                    <option>AB</option>
+                                                    <option>CHEF DU PERSONNEL</option>
                                                 </select>
                                             </div>
                                         </div>
