@@ -86,7 +86,7 @@
                                                             class="<?= $list['ver_doyen'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                             <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                         </td>
-                                                        <td><?= $list['date_ver_doyen']; ?></td>
+                                                        <td><?= date('d/m/Y', strtotime($list['date_ver_doyen'])) ?></td>
                                                         <td
                                                             class="<?= $list['ver_sgr'] == 'no_verify' ? 'text-danger' : 'text-success' ?>">
                                                             <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
@@ -102,9 +102,11 @@
                                                             <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                         </td>
                                                         <td><?= $list['date_ver_rect']; ?></td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['demande_id']; ?>"><i class="la la-trash-o"></i></button>
-                                                        </td>
+                                                        <?php if($list['ver_doyen']=='no_verify'): ?>
+                                                            <td>
+                                                                <button type="button" class="btn btn-danger btn-sm delete_demande_btn" value="<?= $list['demande_id']; ?>"><i class="la la-trash-o"></i></button>
+                                                            </td>
+                                                        <?php endif; ?>
                                                     </tr>
                                                     <?php
                                                 }

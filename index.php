@@ -42,7 +42,7 @@
                                 <i class="la la-graduation-cap"></i>
                             </span>
                             <div class="media-body text-white">
-                                <p class="mb-1">Nombre de faculté</p>
+                                <p class="mb-1">Nbre de faculté</p>
                                 <?php
                                 $dash_faculte = "SELECT * FROM faculte ";
                                 $dash_faculte_run = mysqli_query($con, $dash_faculte);
@@ -68,31 +68,45 @@
                                 <i class="la la-user"></i>
                             </span>
                             <div class="media-body text-white">
-                                <p class="mb-1">Total Course</p>
-                                <h3 class="text-white">28</h3>
+                                <p class="mb-1">Nbre de demande</p>
+                                <?php
+                                $dash_faculte = "SELECT * FROM demande_bourse ";
+                                $dash_faculte_run = mysqli_query($con, $dash_faculte);
+                                if ($faculte_total = mysqli_num_rows($dash_faculte_run)) {
+                                    echo '<h3 class="text-white">' . $faculte_total . '</h3>';
+                                } else {
+                                    echo '<h4 class="mb-0">0</h4>';
+                                }
+                                ?>
                                 <div class="progress mb-2 bg-white">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
+                                    <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
                                 </div>
-                                <small>76% Increase in 20 Days</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-xxl-3 col-sm-6">
-                <div class="widget-stat card bg-danger">
+                <div class="widget-stat card bg-success">
                     <div class="card-body">
                         <div class="media">
                             <span class="mr-3">
                                 <i class="la la-dollar"></i>
                             </span>
                             <div class="media-body text-white">
-                                <p class="mb-1">Fees Collection</p>
-                                <h3 class="text-white">25160$</h3>
+                                <p class="mb-1">Demande Validée</p>
+                                <?php
+                                $dash_faculte = "SELECT * FROM faculte ";
+                                $dash_faculte_run = mysqli_query($con, $dash_faculte);
+                                if ($faculte_total = mysqli_num_rows($dash_faculte_run)) {
+                                    echo '<h3 class="text-white">' . $faculte_total . '</h3>';
+                                } else {
+                                    echo '<h4 class="mb-0">0</h4>';
+                                }
+                                ?>
                                 <div class="progress mb-2 bg-white">
                                     <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
                                 </div>
-                                <small>30% Increase in 30 Days</small>
                             </div>
                         </div>
                     </div>

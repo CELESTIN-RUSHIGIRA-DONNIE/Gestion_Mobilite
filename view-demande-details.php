@@ -1,12 +1,9 @@
-<?php
-session_start();
-if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !== 'SGR' && $_SESSION['auth_user']['role'] !== 'SGAC' && $_SESSION['auth_user']['role'] !== 'RECTORAT' && $_SESSION['auth_user']['role'] !== 'DOYEN')) {
-    header('Location: index.php');
-    exit;
-}
+<?php include("inc/header.php");
+    if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !== 'SGR' && $_SESSION['auth_user']['role'] !== 'SGAC' && $_SESSION['auth_user']['role'] !== 'RECTORAT' && $_SESSION['auth_user']['role'] !== 'DOYEN')) {
+        header('Location: index.php');
+        exit;
+    }
 ?>
-
-<?php include("inc/header.php"); ?>
 
 <div class="content-body">
     <!-- row -->
@@ -243,17 +240,7 @@ if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !=
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_depart'] ?></strong><br>
-                                                        <?php $depart = new DateTime($list['date_depart']);  ?>
-                                                        <?php $retour = new DateTime($list['date_retour']);  ?>
-                                                        
-                                                        <?php $interval = $depart->diff($retour);
-                                                        echo $interval->format('%a jours, %h heures, %i minutes, %s secondes');?><br>
-
-                                                        <?php
-                                                        $depart = $list['date_depart']; // format "Y-m-d H:i:s"
-                                                        ?>
-                                                        <span id="countdown"></span>
+                                                        <strong><?= date('d/m/Y', strtotime($list['date_depart'])) ?></strong><br>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">
@@ -263,13 +250,7 @@ if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !=
                                                         </h5>
                                                     </div>
                                                     <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                                                        <strong><?= $list['date_retour'] ?></strong><br>
-                                                        <?php
-                                                            // $aller  = $list['date_depart'];
-                                                            $aller = date('Y-m-d', strtotime($list['date_depart']));
-                                                            $retour = date('Y-m-d', strtotime($list['date_retour'])); // ex: 2025-12-20 18:30:00
-                                                        ?>
-                                                        <span id="countdown-retour"></span>
+                                                        <strong><?= date('d/m/Y', strtotime($list['date_retour'])) ?></strong><br>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">
@@ -287,7 +268,7 @@ if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !=
                                     </div>
                                     <?php if ($_SESSION['auth_user']['role'] == 'DOYEN'): ?>
                                         <div class="card-header">
-                                            <h4 class="card-title">Avis du Doyen de la Faculté</h4>
+                                            <h3 class="card-title text-primary mb-4"><strong>Avis du Doyen de la Faculté</strong></h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="basic-form">

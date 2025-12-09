@@ -1,11 +1,11 @@
-<?php
-session_start();
+
+<?php include("inc/header.php");
 if (!isset($_SESSION['auth_user']['role']) || ($_SESSION['auth_user']['role'] !== 'SGR' && $_SESSION['auth_user']['role'] !== 'SGAC' && $_SESSION['auth_user']['role'] !== 'RECTORAT' && $_SESSION['auth_user']['role'] !== 'DOYEN')) {
     header('Location: index.php');
     exit;
 }
+
 ?>
-<?php include("inc/header.php"); ?>
 
 <div class="content-body">
     <!-- row -->
