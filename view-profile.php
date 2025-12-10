@@ -227,7 +227,7 @@
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-md-6">
-                                                                <input type="date" name="date_n" value="<?= $user['date_nais']; ?>"
+                                                                <input type="text" name="date_n" value="<?= $user['date_nais']; ?>"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group col-md-6">
