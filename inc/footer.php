@@ -1,7 +1,7 @@
 
     <div class="footer">
         <div class="copyright">
-            <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> 2025</p>
+            <p>Copyright © <a href="mailto:celestinrushigiradonnie@gmail.com">Celestin Rushigira</a> <?= date('d/m/Y'); ?></p>
         </div>
     </div>
 

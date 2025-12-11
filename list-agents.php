@@ -32,7 +32,7 @@
                     <div id="list-view" class="tab-pane fade active show col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Liste de Agents </h4>
+                                <h4 class="card-title"><strong>Liste de Agents</strong></h4>
                                 <?php if ($_SESSION['auth_user']['role'] == 'SGR'): ?>
                                     <a href="add-agent.php" class="btn btn-primary">+ Ajouter Agents</a>
                                 <?php endif; ?>

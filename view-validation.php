@@ -86,8 +86,11 @@
                                                                 <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
                                                             <td>
-                                                                <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                                <a href="view-details-validation.php?id=<?= $list['id_ut_bour_fk']; ?>"
                                                                     class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
+                                                                <!-- <a href="print-demande.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                                    class="btn btn-sm btn-success" target="_blank"><i
+                                                                        class="la la-print"></i></a> -->
                                                             </td>
                                                         </tr>
 
@@ -140,7 +143,7 @@
                                                                 <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
                                                             <td>
-                                                                <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                                <a href="view-details-validation.php?id=<?= $list['id_ut_bour_fk']; ?>"
                                                                     class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                             </td>
                                                         </tr>
@@ -193,7 +196,7 @@
                                                                 <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
                                                             <td>
-                                                                <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                                <a href="view-details-validation.php?id=<?= $list['id_ut_bour_fk']; ?>"
                                                                     class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                             </td>
                                                         </tr>
@@ -246,7 +249,7 @@
                                                                 <?= $list['ver_rect'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
                                                             </td>
                                                             <td>
-                                                                <a href="view-demande-details.php?id=<?= $list['id_ut_bour_fk']; ?>"
+                                                                <a href="view-details-validation.php?id=<?= $list['id_ut_bour_fk']; ?>"
                                                                     class="btn btn-sm btn-primary"><i class="la la-eye"></i></a>
                                                             </td>
                                                         </tr>
