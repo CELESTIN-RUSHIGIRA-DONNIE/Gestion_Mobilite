@@ -7,14 +7,14 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Fees Receipt</h4>
+                    <h4>View detail de demande</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Fees</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0);">Fees Receipt</a></li>
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Demande</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0);">View detail de demande</a></li>
                 </ol>
             </div>
         </div>
@@ -25,36 +25,37 @@
                 if (isset($_GET['id'])) {
                     $view_id = $_GET['id'];
                     $demande = "SELECT agents.*, demande_Bourse.*,    
+                    f.name AS nom_faculte,
+                    d.nom_departement AS departement,
+
                     a_doyen.nom AS nom_doyen,
                     a_doyen.postnom AS postnom_doyen,
                     a_doyen.prenom AS prenom_doyen,
                     a_doyen.role AS role_doyen,
-
                     a_sgr.nom AS nom_sgr,
                     a_sgr.postnom AS postnom_sgr,
                     a_sgr.prenom AS prenom_sgr,
                     a_sgr.role AS role_sgr,
-
                     a_acad.nom AS nom_acad,
                     a_acad.postnom AS postnom_acad,
                     a_acad.prenom AS prenom_acad,
                     a_acad.role AS role_acad,
-
                     a_rect.nom AS nom_rect, 
                     a_rect.postnom AS postnom_rect,
                     a_rect.prenom AS prenom_rect,
                     a_rect.role AS role_rect,
 
-                    demande_bourse.id AS demande_id FROM demande_Bourse
-                    LEFT JOIN agents a_doyen 
-                    ON demande_bourse.id_doyen = a_doyen.id
-                    LEFT JOIN agents a_sgr 
-                    ON demande_bourse.id_sgr = a_sgr.id
-                    LEFT JOIN agents a_acad
-                    ON demande_bourse.id_acad = a_acad.id
-                    LEFT JOIN agents a_rect
-                    ON demande_bourse.id_rect = a_rect.id
-                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id WHERE agents.id=$view_id";
+                    demande_bourse.id AS demande_id 
+                    
+                    FROM demande_Bourse 
+                    LEFT JOIN agents a_doyen ON demande_bourse.id_doyen = a_doyen.id 
+                    LEFT JOIN agents a_sgr ON demande_bourse.id_sgr = a_sgr.id 
+                    LEFT JOIN agents a_acad ON demande_bourse.id_acad = a_acad.id 
+                    LEFT JOIN agents a_rect ON demande_bourse.id_rect = a_rect.id
+                    INNER JOIN agents ON demande_bourse.id_ut_bour_fk = agents.id
+                    INNER JOIN departement d ON agents.id_departement = d.id
+                    INNER JOIN faculte f ON agents.id_faculte = f.id
+                    WHERE agents.id=$view_id";
                     $demande_run = mysqli_query($con, $demande);
 
                     if (mysqli_num_rows($demande_run) > 0) {
@@ -74,6 +75,11 @@
                                             <div>Email: <?= $list['email'] ?></div>
                                             <div>Phone: <?= $list['telephone'] ?></div>
                                         </div>
+                                        <div class="mt-4 col-xl-6 text-right col-lg-6 col-md-6 col-sm-12">
+                                        <h6>School :</h6>
+                                        <div>Faculté  :  <?= $list['nom_faculte'] ?></div>
+                                        <div>Département  :  <?= $list['departement'] ?></div>
+                                    </div>
                                     </div>
                                     <div class="table-responsive-sm">
                                         <table class="table table-striped">
