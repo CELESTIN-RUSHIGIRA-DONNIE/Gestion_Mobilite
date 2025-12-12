@@ -61,7 +61,7 @@
                         foreach ($demande_run as $list) {
                             ?>
                             <div class="card mt-3">
-                                <div class="card-header"> Invoice <strong><?= date('d/m/Y'); ?></strong> <span class="float-right">
+                                <div class="card-header"> Details <strong><?= date('d/m/Y'); ?></strong> <span class="float-right">
                                         <strong></strong> </span> </div>
                                 <div class="card-body">
                                     <div class="row mb-5">
@@ -79,7 +79,7 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th class="center">#</th>
+                                                    <th class="center">N°</th>
                                                     <th class="left">nom</th>
                                                     <th>Niveau de Validation</th>
                                                     <th>STATUS</th>
@@ -90,50 +90,70 @@
                                                 <tr>
                                                     <td class="center">1</td>
                                                     <td class="left strong">
-                                                        <?= $list['nom_doyen'] . ' ' . $list['postnom_doyen'] . ' ' . $list['prenom_doyen'] ?>
+                                                        <?= $list['nom_doyen'] . ' ' . $list['postnom_doyen'] . ' '. $list['prenom_doyen'] ?>
                                                     </td>
                                                     <td class="right"><?= $list['role_doyen'] == 'DOYEN' ? 'Doyen de la faculté' : '' ?></td>
                                                     <td
-                                                        class="<?= $list['ver_doyen'] == 'no_verify' ? 'badge badge-rounded badge-danger' : 'badge badge-rounded badge-success' ?>">
-                                                        <?= $list['ver_doyen'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
+                                                        class="<?= $list['ver_doyen'] == 'no_verify' ? '' : 'badge badge-rounded badge-success' ?>">
+                                                        <?= $list['ver_doyen'] == 'no_verify' ? '' : 'Valider'; ?>
                                                     </td>
-                                                    <td class="right"><?=  date('d/m/Y', strtotime( $list['date_ver_doyen'])) ?></td>
+                                                    <td class="right">
+                                                        <?php if (!empty($list['date_ver_doyen'])): ?>
+                                                            <?= date('d/m/Y', strtotime($list['date_ver_doyen'])) ?>
+                                                        <?php else: ?>
+                                                        <?php endif; ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="center">2</td>
                                                     <td class="left strong">
-                                                        <?= $list['nom_sgr'] . ' ' . $list['postnom_sgr'] . ' ' . $list['prenom_sgr'] ?>
+                                                        <?= $list['nom_sgr'] . ' ' . $list['postnom_sgr'] . ' '. $list['prenom_sgr'] ?>
                                                     </td>
                                                     <td class="right"><?= $list['role_sgr'] == 'SGR' ? 'Secrétaire charger de recherche' : '' ?></td>
                                                     <td
-                                                        class="<?= $list['ver_sgr'] == 'no_verify' ? 'badge badge-rounded badge-danger' : 'badge badge-rounded badge-success' ?>">
-                                                        <?= $list['ver_sgr'] == 'no_verify' ? 'Non Valide' : 'Valider'; ?>
+                                                        class="<?= $list['ver_sgr'] == 'no_verify' ? '' : 'badge badge-rounded badge-success' ?>">
+                                                        <?= $list['ver_sgr'] == 'no_verify' ? '' : 'Valider'; ?>
                                                     </td>
-                                                    <td class="right"><?=  date('d/m/Y', strtotime( $list['date_ver_sgr'])) ?></td>
+                                                    <td class="right">
+                                                        <?php if (!empty($list['date_ver_sgr'])): ?>
+                                                            <?= date('d/m/Y', strtotime($list['date_ver_sgr'])) ?>
+                                                        <?php else: ?>
+                                                        <?php endif; ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="center">3</td>
                                                     <td class="left strong">
-                                                        <?= $list['nom_acad'] . ' ' . $list['postnom_acad'] . ' ' . $list['prenom_acad'] ?>
+                                                        <?= $list['nom_acad'] . ' ' . $list['postnom_acad'] . ' '. $list['prenom_acad'] ?>
                                                     </td>
                                                     <td class="right"><?= $list['role_acad'] == 'SGAC' ? 'Secrétaire général académique' : '' ?></td>
                                                     <td
                                                         class="<?= $list['ver_acad'] == 'no_verify' ? '' : 'badge badge-rounded badge-success' ?>">
                                                         <?= $list['ver_acad'] == 'no_verify' ? '' : 'Valider'; ?>
                                                     </td>
-                                                    <td class="right"><?=  date('d/m/Y', strtotime( $list['date_ver_acad'])) ?></td>
+                                                    <td class="right">
+                                                        <?php if (!empty($list['date_ver_acad'])): ?>
+                                                            <?= date('d/m/Y', strtotime($list['date_ver_acad'])) ?>
+                                                        <?php else: ?>
+                                                        <?php endif; ?>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="center">4</td>
                                                     <td class="left strong">
-                                                        <?= $list['nom_rect'] . ' ' . $list['postnom_rect'] . ' ' . $list['prenom_rect'] ?>
+                                                        <?= $list['nom_rect'] . ' ' . $list['postnom_rect'] . ' '. $list['prenom_rect'] ?>
                                                     </td>
                                                     <td class="right"><?= $list['role_rect'] == 'RECTORAT' ? 'Le Rectorat' : '' ?></td>
                                                     <td
                                                         class="<?= $list['ver_rect'] == 'no_verify' ? '' : 'badge badge-rounded badge-success' ?>">
                                                         <?= $list['ver_rect'] == 'no_verify' ? '' : 'Valider'; ?>
                                                     </td>
-                                                    <td class="right"><?=  date('d/m/Y', strtotime( $list['date_ver_rect'])) ?></td>
+                                                    <td class="right">
+                                                        <?php if (!empty($list['date_ver_rect'])): ?>
+                                                            <?= date('d/m/Y', strtotime($list['date_ver_rect'])) ?>
+                                                        <?php else: ?>
+                                                        <?php endif; ?>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
